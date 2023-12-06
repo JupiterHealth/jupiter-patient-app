@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - STAG
+concurrency:
+  group: STAG
+  cancel-in-progress: true
+name: 🚀 Deploy STAG to Vercel Server
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy STAG
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.vercel.com/v1/integrations/deploy/prj_ffKhXzkKnbYjWviEdF3d9m0bAokg/BhKYQOsWHg'
+        method: 'GET'

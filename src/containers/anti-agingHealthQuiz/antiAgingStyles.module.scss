@@ -1,0 +1,54 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.customStepper {
+    :global(.ant-steps-item-title) {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 25px !important;
+        color: $light-black;
+    }
+    :global(.ant-steps-icon) {
+        font-weight: 600;
+        font-size: 20px;
+    }
+    :global(.ant-steps-label-vertical) {
+        :global(.ant-steps-item-tail) {
+            margin-left: 74px;
+            padding: 3.5px 0px;
+            &::after {
+                height: 2px;
+                background: $light-bg;
+            }
+        }
+    }
+    :global(.ant-steps-item-wait) {
+        :global(.ant-steps-item-icon) {
+            background: $light-bg;
+            border-color: $light-bg;
+        }
+        :global(.ant-steps-icon) {
+            color: $input-border;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        :global(.ant-steps-item-title) {
+            font-size: 14px;
+            font-weight: 500 !important;
+            color: $light-bg !important;
+        }
+    }
+    :global(.ant-steps-item-finish) {
+        :global(.ant-steps-item-icon) {
+            background-color: $primary;
+        }
+        :global(.ant-steps-icon) {
+            color: $white;
+            top: -4.5px;
+        }
+        :global(.ant-steps-item-tail) {
+            &::after {
+                background: $primary;
+            }
+        }
+    }
+}

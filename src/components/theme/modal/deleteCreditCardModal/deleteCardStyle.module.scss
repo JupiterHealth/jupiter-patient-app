@@ -1,0 +1,13 @@
+@import "../../../../../jupiter-commons/src/components/styles/variables.scss";
+
+.permissionModal {
+    :global(.ant-modal-body) {
+        padding: 0px !important;
+    }
+
+    :global(.ant-modal-title) {
+        color: $secondary;
+        font-size: 24px;
+        font-weight: 700;
+    }
+}

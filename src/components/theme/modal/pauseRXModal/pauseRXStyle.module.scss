@@ -1,0 +1,51 @@
+@import "jupiter-commons/src/components/styles/variables.scss";
+
+.modalCustomContent {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+.modalContent {
+    :global(.ant-modal-body) {
+        padding: 0px !important;
+    }
+}
+.inputField {
+    :global(.input-border) {
+        height: 30px !important;
+    }
+
+    div {
+        div {
+            :global(.input-border:hover) {
+                border-color: $btn-border !important;
+            }
+        }
+    }
+}
+.checkForPause {
+    :global(.custom-ant-radio) {
+        margin-right: 0px !important;
+    }
+}
+
+.disableButton {
+    &:global(.ant-btn[disabled]) {
+        background-color: $primary !important;
+        color: #fff !important;
+    }
+}

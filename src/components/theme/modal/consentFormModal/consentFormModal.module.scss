@@ -1,0 +1,35 @@
+@import "jupiter-commons/src/components/styles/variables.scss";
+
+.modalBody {
+    :global(.ant-modal-body) {
+        padding: 0px !important;
+    }
+    :global(.ant-modal-footer) {
+        justify-content: end !important;
+    }
+    @media only screen and (min-device-width: 320px) and (max-device-width: 990px) and (orientation: landscape) {
+        .landscapeView {
+            width: 100% !important;
+        }
+    }
+}
+
+.modalContent {
+    max-height: 450px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}

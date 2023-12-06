@@ -1,0 +1,39 @@
+@import "jupiter-commons/src/components/styles/variables.scss";
+
+.disableButton {
+    &:global(.ant-btn[disabled]) {
+        background-color: $primary !important;
+        color: #fff !important;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 990px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .landscapeView {
+        display: flex !important;
+        align-items: center !important;
+        img {
+            margin: unset !important;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 990px) and (orientation: landscape) {
+    .landscapeView {
+        display: flex !important;
+        align-items: center !important;
+        img {
+            margin: unset !important;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 800px) and (max-device-width: 990px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .landscapeView {
+        display: flex !important;
+        align-items: center !important;
+        flex-direction: column;
+        img {
+            margin: unset !important;
+        }
+    }
+}

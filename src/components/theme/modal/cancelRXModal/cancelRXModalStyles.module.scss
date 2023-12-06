@@ -1,0 +1,14 @@
+@import "jupiter-commons/src/components/styles/variables.scss";
+
+.disableButton {
+    &:global(.ant-btn[disabled]) {
+        background-color: $primary !important;
+        color: #fff !important;
+    }
+}
+
+.cancelCheckbox {
+    :global(.ant-checkbox) {
+        padding: 6px !important;
+    }
+}

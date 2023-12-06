@@ -1,0 +1,17 @@
+.resendBtn {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    :global(.ant-btn-loading) {
+        cursor: not-allowed;
+    }
+
+    :global(.ant-btn-link) {
+        text-decoration: underline !important;
+
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+}

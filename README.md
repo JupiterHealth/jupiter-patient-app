@@ -1,1 +1,1 @@
-# jupiter-patient-app
+# jupiter-health-app

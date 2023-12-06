@@ -1,0 +1,8 @@
+.customDivider {
+    :global(.ant-divider) {
+        &::after,
+        &::before {
+            border-top: 0.5px solid #C8CCCF !important;
+        }
+    }
+}

@@ -1,0 +1,299 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.dateField {
+    ::placeholder {
+        font-size: 14px !important;
+    }
+
+    :global(.ant-picker-input) {
+        margin-top: -1px !important;
+    }
+
+    :global(.ant-picker-input input) {
+        font-size: 16px !important;
+    }
+}
+
+.applyPromoCode {
+    :global(.ant-space) {
+        width: 100%;
+
+        :global(.ant-space-item) {
+            border: none;
+            border-radius: unset;
+
+            :global(.ant-collapse) {
+                width: auto;
+                border: 1px solid $border-color !important;
+                background-color: transparent;
+                border-radius: 10px;
+
+                :global(.ant-collapse-item) {
+                    border: none;
+                    border-radius: unset;
+                    padding: 0px;
+
+                    :global(.ant-collapse-header) {
+                        color: $light-black;
+                        text-align: start;
+                        font-weight: 700;
+                        font-size: 16px;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        :global(.ant-collapse-expand-icon) {
+                            order: 2;
+
+                            :global(.ant-collapse-arrow) {
+                                margin: 0 auto;
+
+                                svg {
+                                    font-size: 17px;
+                                    margin-bottom: 2px;
+                                    transform: rotate(90deg);
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+
+                    :global(.ant-collapse-content) {
+                        background-color: unset;
+
+                        :global(.ant-collapse-content-box) {
+                            padding-top: 0px !important;
+
+                            div {
+                                input {
+                                    &::placeholder {
+                                        font-weight: 500;
+                                        color: #717171;
+                                        font-size: 16px;
+                                        padding: 16px !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                :global(.ant-collapse-content) {
+                    border-top: none !important;
+                }
+
+                :global(.ant-collapse-item-active) {
+                    :global(.ant-collapse-header) {
+                        :global(.ant-collapse-expand-icon) {
+                            :global(.ant-collapse-arrow) {
+                                svg {
+                                    transform: rotate(-90deg) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.phoneInput {
+    input {
+        width: 240px;
+        background-color: transparent;
+    }
+}
+
+.asteriskRemove {
+    :global(.asteriskRemove) {
+        span {
+            display: none;
+        }
+
+        @media only screen and (max-width: 676px) {
+            label {
+                text-align: left;
+            }
+        }
+    }
+
+    textarea {
+        min-height: 85px;
+    }
+}
+
+.uploadBox {
+    :global(.ant-upload-select) {
+        padding: 28px 25px;
+        border: 1px dashed $input-border;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:global(.ant-upload-disabled) {
+            background-color: #f9f9f9;
+
+            svg,
+            span,
+            p {
+                color: #717171;
+            }
+        }
+
+        @media (max-width:1025px) {
+            border: 2px dashed $input-border;
+        }
+    }
+}
+
+.applyInput {
+    input {
+        :global(.input-border:hover) {
+            border-color: $btn-border !important;
+        }
+        &::placeholder {
+            text-align: left;
+            padding-left: 0px !important;
+            position: relative;
+            left: -16px;
+            font-size: 14px !important;
+            width: 100%;
+        }
+    }
+}
+
+.uploadIdentification {
+    :global(.circleSecondaryTop) {
+        &::before {
+            top: 7px;
+        }
+    }
+}
+
+.insuranceCheckBox {
+    :global(.ant-checkbox-wrapper) {
+        align-items: flex-start;
+        :global(.ant-checkbox) {
+            width: 20px;
+        }
+        p {
+            bottom: 2px;
+            position: relative;
+        }
+    }
+}
+
+.addressLine1 {
+    > div {
+        text-align: left;
+    }
+
+    input {
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+}
+
+.addressLine2 {
+    input {
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+
+    :global(.asteriskRemove) {
+        span {
+            display: none;
+        }
+    }
+}
+
+.markAsDefault {
+    label {
+        padding-left: 20px;
+
+        &::after {
+            left: 4.1px !important;
+        }
+
+        &::before {
+            width: 20px;
+            height: 20px;
+        }
+
+        span {
+            font-size: 14px;
+        }
+    }
+}
+
+.placeholderSize {
+    input {
+        &::placeholder {
+            font-size: 14px !important;
+        }
+    }
+}
+
+.expiryDate {
+    input {
+        &::placeholder {
+            font-size: 14px !important;
+        }
+    }
+
+    :global(.ant-picker-suffix) {
+        :global(.anticon-calendar) {
+            svg {
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+}
+
+.cvv {
+    input {
+        &::placeholder {
+            font-size: 14px !important;
+        }
+    }
+}
+
+.city {
+    input {
+        padding-left: 12px !important;
+
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+}
+
+.province {
+    input {
+        padding-left: 12px !important;
+
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+}
+
+.postalCode {
+    input {
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+}
+
+.landscapeView {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (orientation: landscape) {
+        width: 380px !important;
+        font-size: 20px;
+    }
+}

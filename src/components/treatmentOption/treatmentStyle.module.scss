@@ -1,0 +1,52 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.overlayContainer {
+    position: relative;
+    background-image: url(../../../public/images/Gray-Transparent-Background.png);
+    width: 100%;
+    height: 100%;
+
+    .overlayText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    img {
+        z-index: -1;
+    }
+}
+
+.treatmentInput {
+    label {
+        font-weight: 600;
+        color: $light-black;
+        font-size: 18px;
+
+        @media only screen and (max-width: 676px) {
+            font-size: 16px;
+        }
+    }
+}
+
+.treatmentOverlayInput {
+    label {
+        font-weight: 600;
+        color: #222;
+        opacity: 26%;
+        font-size: 18px;
+
+        &::before {
+            border-color: #696868 !important;
+        }
+    }
+}
+
+.circleSecondary {
+    :global(.circleSecondaryTop) {
+        &::before {
+            top: 7px;
+        }
+    }
+}

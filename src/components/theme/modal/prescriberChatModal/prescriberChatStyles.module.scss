@@ -1,0 +1,52 @@
+@import "../../../../../jupiter-commons/src/components/styles/variables.scss";
+
+.messages {
+
+    :global(.ant-modal-content) {
+        :global(.ant-modal-close) {
+            top: 16px;
+
+            @media (max-width:767px) {
+                top: 17px;
+                right: 24px;
+            }
+        }
+    }
+
+    :global(.ant-modal-body) {
+        padding: 0 !important;
+
+        :global(.chatContainer) {
+            padding-left: 28px;
+            padding-right: 28px;
+
+            @media (max-width:767px) {
+                padding-left: 18px;
+                padding-right: 17px;
+            }
+        }
+
+        :global(.patientPrescriberMessageContainer) {
+            width: 99%;
+
+            @media (max-width:767px) {
+                width: 90%;
+                margin: 0 auto !important;
+            }
+        }
+
+        :global(.chatMessageContainer) {
+            padding-left: 26px;
+            padding-right: 20px;
+            padding-bottom: 30px;
+            border-radius: 20px;
+            margin: 0;
+
+            @media (max-width: 767px) {
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}

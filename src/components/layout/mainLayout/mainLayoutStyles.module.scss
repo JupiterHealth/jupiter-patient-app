@@ -1,0 +1,213 @@
+@import "../jupiter-commons/src/components/styles/variables.scss";
+
+.LayoutContainer {
+    position: relative;
+    padding-top: 100px;
+    min-height: 100vh;
+    background-color: $body-bg !important;
+
+    @media (max-width: 767px) {
+        padding-top: 80px;
+        background-color: transparent;
+    }
+    @media only screen and (min-device-width: 320px) and (max-device-width: 800px) and (orientation: landscape) {
+        padding-top: 60px;
+    } 
+
+    &__LayoutWrapper {
+        display: flex;
+        margin: 0px 81px;
+        border: 1px solid $border-input;
+        border-radius: 30px 30px 0 0;
+        background-color: $white;
+
+        @media (max-width: 1025px) {
+            margin: 0px 32px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 767px) {
+            margin: 0px;
+            border: none;
+            border-radius: 0;
+        }
+    }
+
+    &__header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 80px;
+        box-shadow: 0px 2px 5px #919a9f4d;
+        z-index: 7;
+        background-color: $body-bg;
+        @media only screen and (min-device-width: 320px) and (max-device-width: 800px) and (orientation: landscape) {
+            height: 60px;
+        }   
+    }
+
+    &__Sidebar {
+        width: 270px;
+        min-width: 244px;
+        padding: 10px 0px;
+        padding-top: 23px;
+        overflow-y: auto;
+        border-right: 1px solid $input-border;
+
+        @media (max-width: 1200px) {
+            display: none;
+        }
+
+        .sidebarMenu {
+            padding: 6px 20px;
+
+            a {
+                font-size: 16px;
+                font-weight: 500;
+                color: $body-color;
+            }
+
+            &:hover {
+                background: $grey-400;
+                cursor: pointer;
+
+                a {
+                    color: $primary;
+                }
+            }
+        }
+
+        .sidebarMenuActive {
+            background: $grey-400;
+            cursor: pointer;
+            border-right: 2px solid $primary;
+
+            a {
+                color: $primary;
+            }
+        }
+
+        .signOut {
+            padding: 6px 20px;
+
+            a {
+                font-size: 16px;
+                font-weight: 500;
+                color: $body-color;
+            }
+
+            &:hover {
+                background: $grey-400;
+                cursor: pointer;
+
+                a {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    &__PageContent {
+        // padding: 13px 16px 15px;
+        width: 100%;
+        position: relative;
+        overflow-y: auto;
+        height: calc(100vh - 103px);
+
+        @media (max-width: 767px) {
+            height: calc(100vh - 80px);
+
+            &::-webkit-scrollbar-track {
+                margin: 0 !important;
+            }
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 800px) and (orientation: landscape) {
+            height: calc(100vh - 60px);
+        }
+
+        &::-webkit-scrollbar {
+            height: 4px !important;
+            width: 4px !important;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #fff;
+            margin: 35px 0;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: rgb(207, 207, 207);
+            border-radius: 15px;
+        }
+    }
+}
+
+.headerAvatar {
+    :global(.ant-avatar) {
+        width: 30px;
+        height: 30px;
+
+        :global(.ant-avatar-string) {
+            font-size: 24px !important;
+            font-weight: 500;
+        }
+    }
+
+    p {
+        word-break: break-all;
+    }
+}
+
+// Navigation bar start
+.menuIcon {
+    @media (min-width: 1200px) {
+        display: none;
+    }
+}
+
+.navigationMenu {
+    .headerAvatar {
+        @media (max-width: 767px) {
+            display: flex;
+        }
+    }
+
+    :global(.ant-drawer-content) {
+        :global(.ant-drawer-header-title) {
+            align-items: center;
+        }
+
+        :global(.ant-drawer-close) {
+            font-size: 20px;
+        }
+
+        :global(.ant-drawer-wrapper-body) {
+            :global(.ant-drawer-header) {
+                padding: 16px 20px;
+                border-bottom: 1px solid $grey-600;
+
+                button {
+                    order: 2;
+                    margin: 0px;
+                }
+
+                :global(.ant-drawer-title) {
+                    order: 1;
+                    margin-right: 5px;
+                }
+            }
+
+            :global(.ant-drawer-body) {
+                padding: 0px 0px 0px 0px !important;
+            }
+        }
+    }
+}
+
+// Navigation Bars end
+.footerWrapper {
+    box-shadow: 0px 1px 6px 0px rgba(145, 154, 159, 1);
+}

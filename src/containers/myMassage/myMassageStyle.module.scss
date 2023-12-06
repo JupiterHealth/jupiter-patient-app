@@ -1,0 +1,76 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.customTable {
+    :global(.ant-table) {
+        width: 100%;
+    }
+
+    :global(.ant-table-thead) {
+        tr {
+            th {
+                background: none;
+
+                &:global(.ant-table-cell) {
+                    padding: 16px 0 16px 16px !important;
+                }
+
+                &:nth-child(1) {
+                    width: 200px !important;
+                }
+
+                &:nth-child(2) {
+                    width: 180px !important;
+                }
+
+                &:nth-child(3) {
+                    width: 180px !important;
+                }
+
+                &:nth-child(4) {
+                    width: 180px !important;
+                }
+
+                &:nth-child(5) {
+                    width: 230px !important;
+                }
+
+                &:nth-child(6) {
+                    width: 100px !important;
+                }
+            }
+        }
+    }
+
+    :global(.ant-table-tbody) {
+        tr {
+            td {
+                &:global(.ant-table-cell) {
+                    padding: 16px 0 16px 16px !important;
+                }
+            }
+        }
+    }
+}
+
+.filter {
+    font-size: 18px !important;
+    font-weight: 500;
+    color: $light-black !important;
+
+    :global(.ant-select-selector) {
+        width: 100% !important;
+        margin-left: 30px;
+        height: 35px !important;
+        border-radius: 10px !important;
+        margin: 0px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $input-border !important;
+        color: $light-black !important;
+    }
+
+    :global(.ant-select-selection-placeholder) {
+        color: $light-black !important;
+    }
+}

@@ -1,0 +1,3 @@
+import MaleSexualHealthQuizContainer from "src/containers/maleSexualHealthQuiz/maleSexualHealthQuizContainer";
+
+export default MaleSexualHealthQuizContainer;

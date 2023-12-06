@@ -1,0 +1,60 @@
+@import "../../../../../jupiter-commons/src/components/styles/variables.scss";
+
+.requestCheck {
+    @media (max-width: 767px) {
+        position: relative;
+        bottom: 2px;
+    }
+}
+
+.modifyModalScroll {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    @media (max-width: 767px) {
+        max-height: 100%;
+    }
+}
+.modalContent {
+    :global(.ant-modal-body) {
+        padding: 0px !important;
+    }
+}
+
+.selectField {
+    max-height: calc(100vh - 280px);
+    @media (max-width: 767px) {
+        max-height: 100%;
+    }
+}
+
+.disableButton {
+    &:global(.ant-btn[disabled]) {
+        background-color: $primary !important;
+        color: #fff !important;
+    }
+}
+
+.datePicker {
+    :global(.antdDataPicker) {
+        :global(.ant-picker-input) {
+            :global(.ant-picker-clear) {
+                display: block !important;
+            }
+        }
+    }
+}

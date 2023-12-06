@@ -1,0 +1,101 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.customeCheckbox {
+    text-align: left;
+
+    :global(.ant-checkbox-wrapper) {
+        :global(.ant-checkbox) {
+            padding: 9px;
+            border-radius: 3px !important;
+        }
+
+        span {
+            &:last-child {
+                top: -2px;
+                font-weight: 600;
+                font-size: 15px;
+                padding-left: 12px !important;
+                text-align: left;
+                word-wrap: break-word;
+            }
+        }
+
+        &:global(.ant-checkbox-wrapper-checked) {
+            :global(.ant-checkbox-checked) {
+                // border: transparent;
+            }
+        }
+    }
+}
+
+.customeCheckboxMadication {
+    text-align: left;
+
+    :global(.ant-checkbox-wrapper) {
+        span {
+            &:last-child {
+                top: -2px;
+                font-weight: 600;
+                font-size: 15px;
+                padding-left: 12px !important;
+                text-align: left;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.follwingCondition5Checkbox {
+    width: auto;
+
+    :global(.ant-checkbox-wrapper) {
+        span {
+            &:last-child {
+                width: 97%;
+            }
+        }
+    }
+}
+
+.scaleOfPAain {
+    :global(.rc-slider) {
+        width: 88% !important;
+
+        :global(.rc-slider-step) {
+            :global(.rc-slider-dot) {
+                display: none;
+            }
+        }
+
+        :global(.rc-slider-mark) {
+            :global(.rc-slider-mark-text) {
+                color: $light-black;
+                font-size: 16px;
+                font-weight: 500;
+
+                &:global(.rc-slider-mark-text-active) {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+.checkbox {
+    :global(.ant-checkbox) {
+        padding: 10px !important;
+    }
+}
+
+.textareaPainQuestions {
+    textarea {
+        height: 70px;
+    }
+}
+
+.responsiveDesign {
+    display: block;
+    @media (min-width: 1024px) {
+        display: flex;
+    }
+}

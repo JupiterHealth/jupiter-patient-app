@@ -1,0 +1,9 @@
+@import "jupiter-commons/src/components/styles/variables.scss";
+
+.activeIngredient {
+    :global(.asteriskRemove) {
+        span {
+            display: none;
+        }
+    }
+}

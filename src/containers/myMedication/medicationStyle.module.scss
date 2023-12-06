@@ -1,0 +1,181 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.customTable {
+    :global(.ant-table-content) {
+        max-height: calc(100vh - 365px);
+        overflow-y: auto;
+
+        @media (max-width: 767px) {
+            max-height: calc(100vh - 325px);
+        }
+
+        /* Mobile Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (orientation: landscape) {
+            max-height: 100%;
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            max-height: calc(100vh - 35px);
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            max-height: calc(100vh - 260px);
+        }
+
+        /* Tablet Portrait */
+        @media only screen and (min-device-width: 767px) and (max-device-width: 992px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            max-height: calc(100vh - 295px);
+        }
+    }
+
+    :global(.ant-table-thead) {
+        tr {
+            th {
+                background: none;
+
+                &:global(.ant-table-cell) {
+                    padding: 16px 0 16px 16px;
+                }
+
+                &:nth-child(1) {
+                    width: 150px;
+                }
+
+                &:nth-child(2) {
+                    width: 50px;
+                }
+
+                &:nth-child(3) {
+                    width: 150px;
+                }
+
+                &:nth-child(4) {
+                    width: 80px;
+                }
+
+                &:nth-child(5) {
+                    width: 100px;
+                }
+
+                &:nth-child(6) {
+                    width: 130px;
+                }
+
+                &:nth-child(7) {
+                    width: 80px;
+                }
+
+                &:nth-child(8) {
+                    width: 80px;
+                    text-align: center;
+                    padding-right: 16px;
+                }
+            }
+        }
+    }
+
+    :global(.ant-table-tbody) {
+        tr {
+            td {
+                &:global(.ant-table-cell) {
+                    padding: 16px 0 16px 16px;
+
+                    @media (max-width: 767px) {
+                        padding-right: 16px !important;
+                    }
+                }
+                &:nth-child(1) {
+                    width: 150px;
+                }
+
+                &:nth-child(2) {
+                    width: 50px;
+                }
+
+                &:nth-child(3) {
+                    width: 150px;
+                }
+
+                &:nth-child(4) {
+                    width: 80px;
+                }
+
+                &:nth-child(5) {
+                    width: 100px;
+                }
+
+                &:nth-child(6) {
+                    width: 130px;
+                }
+
+                &:nth-child(7) {
+                    width: 80px;
+                }
+
+                &:nth-child(8) {
+                    width: 80px;
+                    text-align: center;
+                    padding-right: 16px;
+                }
+            }
+        }
+    }
+
+    :global(.ant-spin-container) {
+        :global(.ant-pagination) {
+            margin: 16px 8px !important;
+            :global(.ant-pagination-item) {
+                min-width: 28px !important;
+                height: 30px !important;
+            }
+            :global(.ant-pagination-item-link) {
+                min-width: 28px !important;
+                height: 30px !important;
+                &:hover {
+                    border: $btn-border 1px solid !important;
+                    color: $btn-border !important;
+                }
+            }
+        }
+    }
+}
+
+.filter {
+    font-size: 18px !important;
+    font-weight: 500;
+
+    :global(.ant-select-selector) {
+        width: 100% !important;
+        margin-left: 30px;
+        height: 35px !important;
+        border-radius: 10px !important;
+        margin: 0px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $input-border !important;
+        color: $light-black !important;
+
+        :global(.ant-select-selection-placeholder) {
+            color: $light-black !important;
+        }
+    }
+}
+
+.dateField {
+    :global(.ant-picker-input) {
+        margin-top: 2px !important;
+    }
+
+    :global(.ant-picker-input input) {
+        color: $light-black !important;
+        font-size: 18px !important;
+    }
+
+    svg {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.popover {
+    z-index: 2 !important;
+}

@@ -1,0 +1,17 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.defaultCheck {
+    :global(.custom-ant-radio) {
+        margin-right: 0px !important;
+        label {
+            &::before {
+                width: 20px !important;
+                height: 20px !important;
+            }
+            &::after {
+                width: 8px !important;
+                height: 8px !important;
+            }
+        }
+    }
+}

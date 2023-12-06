@@ -1,0 +1,80 @@
+@import "../../../../../jupiter-commons/src/components/styles/variables.scss";
+
+.sidebarMenu {
+    padding: 13px 28px;
+
+    a {
+        font-size: 16px;
+        font-weight: 500;
+        color: $body-color;
+    }
+
+    &:hover {
+        background: $light-bg;
+        cursor: pointer;
+
+        a {
+            color: $secondary;
+        }
+    }
+}
+
+.sidebarMenuActive {
+    background: $light-bg;
+    cursor: pointer;
+    border-right: 4px solid $secondary;
+
+    a {
+        color: $secondary;
+    }
+}
+
+.signOut {
+    padding: 12px 20px;
+
+    a {
+        font-size: 16px;
+        font-weight: 500;
+        color: $body-color;
+    }
+
+    &:hover {
+        background: $light-bg;
+        cursor: pointer;
+
+        a {
+            color: $secondary;
+        }
+    }
+}
+
+.prescriberSidebarMenuActive {
+    background: $light-bg;
+    cursor: pointer;
+    border-right: 3px solid $secondary;
+
+    span {
+        color: $white;
+    }
+}
+
+.sidebarContainer {
+    height: calc(100vh - 199px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        height: 3px !important;
+        width: 3px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(207, 207, 207);
+        border-radius: 15px;
+    }
+}

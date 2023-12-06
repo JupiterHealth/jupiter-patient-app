@@ -1,0 +1,17 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.customeCheckbox {
+    text-align: left;
+
+    :global(.ant-checkbox-wrapper) {
+        span {
+            &:last-child {
+                top: -2px;
+                font-weight: 600;
+                font-size: 16px;
+                margin-left: 6px;
+                text-align: left;
+            }
+        }
+    }
+}

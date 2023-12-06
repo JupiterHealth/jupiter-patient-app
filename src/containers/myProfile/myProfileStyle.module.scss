@@ -1,0 +1,15 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
+.addressLine {
+    :global(.asteriskRemove) {
+        span {
+            display: none;
+        }
+    }
+}
+
+.disabledField {
+    &:hover {
+        border-color: $border-input !important;
+    }
+}

@@ -1,0 +1,49 @@
+.customDivider {
+    :global(.ant-divider) {
+
+        &::after,
+        &::before {
+            border-top: 0.5px solid #c8cccf !important;
+        }
+    }
+}
+
+.customDrawer {
+    :global(.ant-drawer-content) {
+        :global(.ant-drawer-header) {
+            position: relative;
+
+            :global(.ant-drawer-close) {
+                position: absolute;
+                right: 0;
+                margin: 24px;
+            }
+
+            :global(.ant-drawer-title) {
+                font-size: 20px;
+                font-weight: 600;
+                color: #3979c3;
+            }
+        }
+
+        :global(.ant-drawer-body) {
+            padding: 0;
+
+            :global(.sidebarContainer) {
+                width: 100% !important;
+                border: unset;
+                padding: 0;
+
+                :global(.sidebarUserDetailsContainer) {
+                    height: calc(100vh - 290px);
+                }
+            }
+        }
+    }
+}
+
+.sidebarListingPrescriberChat {
+    :global(.sidebarContainer) {
+        width: 270px;
+    }
+}

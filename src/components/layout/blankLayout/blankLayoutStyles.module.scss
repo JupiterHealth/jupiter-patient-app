@@ -1,0 +1,24 @@
+@import "../jupiter-commons/src/components/styles/variables.scss";
+
+.profileComponent {
+    &::-webkit-scrollbar {
+        height: 4px !important;
+        width: 4px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+        margin: 35px 0;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(207, 207, 207);
+        border-radius: 15px;
+    }
+}
+
+.blankLayoutContainer {
+    height: auto;
+}

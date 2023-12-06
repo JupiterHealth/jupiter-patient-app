@@ -1,0 +1,45 @@
+@import "../jupiter-commons/src/components/styles/variables.scss";
+
+.layoutContainer {
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    background-color: $light;
+    @media (max-width: 767px) {
+        height: 100%;
+    }
+
+    &__layoutWrapper {
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - 12px);
+        background-color: #f9f9f9;
+
+        @media (max-width: 767px) {
+            height: 100%;
+            background-color: #fff;
+        }
+    }
+
+    &__formContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        :global(.landscapeLayout) {
+            @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+                max-height: 62vh;
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    &__authFooter {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
