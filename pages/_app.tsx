@@ -98,7 +98,7 @@ const MyApp = ({
                     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
                     rel="stylesheet"
                 ></link>
-                {process.env.NEXT_ENV !== "production" && (
+                {process.env.NEXT_ENV !== "PRODUCTION" && (
                     <meta name="robots" content="noindex,nofollow" />
                 )}
                 <style>
@@ -155,6 +155,9 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
         if (appContext.ctx.req) {
             const cookies = new Cookies(ctx.req.headers.cookie);
             const authCookies: any = cookies.get(PATIENT_COOKIE);
+            console.log("🚀 -----------------------------🚀");
+            console.log("🚀 ~ authCookies:", authCookies);
+            console.log("🚀 -----------------------------🚀");
             // Server Side Axios Setup.
             const axiosInstance = API(true);
             axiosInstance.interceptors.request.use(
@@ -193,8 +196,26 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                 }
             }
             // Fill data of loginUser in redux from Serverside.
+
+            console.log(
+                "🚀 -------------------------------------------------------------------------🚀",
+            );
+            console.log(
+                "🚀 ~ authCookies?.session?.accessToken:",
+                authCookies?.session?.accessToken,
+            );
+            console.log(
+                "🚀 -------------------------------------------------------------------------🚀",
+            );
             if (authCookies?.session?.accessToken) {
                 try {
+                    console.log(
+                        "🚀 -------------------------------------------------------------------------🚀",
+                    );
+                    console.log("🚀 ~ login:", "Login");
+                    console.log(
+                        "🚀 -------------------------------------------------------------------------🚀",
+                    );
                     const loginUser = await getLoginUser({
                         authorization: `Bearer ${authCookies?.session?.accessToken}`,
                     });
@@ -207,7 +228,7 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                     store.dispatch(signupReset());
                     store.dispatch(loginReset());
                     store.dispatch(signupUserReset());
-                    store.dispatch(loginUserReset());
+                    // store.dispatch(loginUserReset());
                 }
             }
         } else {
