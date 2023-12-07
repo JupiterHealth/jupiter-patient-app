@@ -217,7 +217,8 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                         "🚀 -------------------------------------------------------------------------🚀",
                     );
                     const loginUser = await getLoginUser({
-                        authorization: `Bearer ${authCookies?.session?.accessToken}`,
+                        // authorization: `Bearer ${authCookies?.session?.accessToken}`,
+                        authorization: `${authCookies?.session?.accessToken}`,
                     });
                     console.log("🚀 -------------------------🚀");
                     console.log("🚀 ~ loginUserRAXIT:", loginUser);
@@ -229,11 +230,11 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                     console.log("🚀 -------------------------🚀");
                     console.log("🚀 ~ e.message:", e.message);
                     console.log("🚀 -------------------------🚀");
-                    store.dispatch(signupUserFail(e.message));
-                    store.dispatch(loginUserFail(e.message));
-                    store.dispatch(signupReset());
-                    store.dispatch(loginReset());
-                    store.dispatch(signupUserReset());
+                    // store.dispatch(signupUserFail(e.message));
+                    // store.dispatch(loginUserFail(e.message));
+                    // store.dispatch(signupReset());
+                    // store.dispatch(loginReset());
+                    // store.dispatch(signupUserReset());
                     // store.dispatch(loginUserReset());
                 }
             }
