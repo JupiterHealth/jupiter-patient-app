@@ -219,10 +219,16 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                     const loginUser = await getLoginUser({
                         authorization: `Bearer ${authCookies?.session?.accessToken}`,
                     });
+                    console.log("🚀 -------------------------🚀");
+                    console.log("🚀 ~ loginUserRAXIT:", loginUser);
+                    console.log("🚀 -------------------------🚀");
 
                     store.dispatch(signupUserSuccess(loginUser));
                     store.dispatch(loginUserSuccess(loginUser));
                 } catch (e: any) {
+                    console.log("🚀 -------------------------🚀");
+                    console.log("🚀 ~ e.message:", e.message);
+                    console.log("🚀 -------------------------🚀");
                     store.dispatch(signupUserFail(e.message));
                     store.dispatch(loginUserFail(e.message));
                     store.dispatch(signupReset());
