@@ -246,8 +246,14 @@ const DashboardContainer = () => {
     console.log("🚀 -----------------------------------------------------🚀");
     console.log("🚀 ~ loginUserData?.user?.id:", loginUserData?.user?.id);
     console.log("🚀 -----------------------------------------------------🚀");
+    console.log("🚀 -----------------------------------------------------🚀");
+    console.log("🚀 ~ loginUserData:", loginUserData);
+    console.log("🚀 -----------------------------------------------------🚀");
     console.log("🚀 -------------------------------------------------------🚀");
     console.log("🚀 ~ SignupUserData?.user?.id:", SignupUserData?.user?.id);
+    console.log("🚀 -----------------------------------🚀");
+    console.log("🚀 ~ SignupUserData:", SignupUserData);
+    console.log("🚀 -----------------------------------🚀");
     console.log("🚀 -------------------------------------------------------🚀");
 
     useEffect(() => {
