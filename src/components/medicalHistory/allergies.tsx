@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Row, message } from "antd";
 import {
+    AssessmentTextAreaField,
     CreatableSelectField,
     FormGroup,
     InputRadioField,
@@ -206,7 +207,7 @@ const Allergies = (props: MedicationProps) => {
                         {medicines &&
                             medicines.map((medicine: any) => (
                                 <div className="flex items-start justify-between mt-4">
-                                    <div className="flex items-center w-auto md:w-[44%]">
+                                    <div className="flex items-center w-[44%] md:w-[44%]">
                                         <p className="ml-5 capitalize text-start text-sm md:text-base font-medium circleSecondaryTop">
                                             {(medicine?.key).replace(/_/g, " ")}
                                         </p>
@@ -215,7 +216,7 @@ const Allergies = (props: MedicationProps) => {
                                         <FormGroup
                                             className={`!mb-4 w-full ${AllergiesStyles.textarea}`}
                                         >
-                                            <TextAreaField
+                                            <AssessmentTextAreaField
                                                 {...{
                                                     register,
                                                     formState,

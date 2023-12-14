@@ -2,6 +2,7 @@ import { optionType, questionObj } from "@redux/slices/assessment/index.js";
 import { Checkbox, Col, Row } from "antd";
 import { deepClone } from "jupiter-commons/src/components/libs/helpers";
 import {
+    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -202,7 +203,7 @@ const CommonCheckBoxForAssessment = (
                             <FormGroup
                                 className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                             >
-                                <TextAreaField
+                                <AssessmentTextAreaField
                                     {...{
                                         register,
                                         formState,
@@ -218,6 +219,7 @@ const CommonCheckBoxForAssessment = (
                                         onChange: (e: any) => {
                                             handleTextareaChange(e);
                                         },
+                                        autoFocus: true,
                                     }}
                                 />
                             </FormGroup>
@@ -234,7 +236,7 @@ const CommonCheckBoxForAssessment = (
                         <FormGroup
                             className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                         >
-                            <TextAreaField
+                            <AssessmentTextAreaField
                                 {...{
                                     register,
                                     formState,
@@ -250,6 +252,7 @@ const CommonCheckBoxForAssessment = (
                                     onChange: (e: any) => {
                                         handleTextareaChange(e);
                                     },
+                                    autoFocus: true,
                                 }}
                             />
                         </FormGroup>

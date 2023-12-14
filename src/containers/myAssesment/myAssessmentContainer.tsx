@@ -129,14 +129,14 @@ const MyAssessmentContainer = () => {
         },
         {
             title: <div className="font-semibold">Date & Time</div>,
-            dataIndex: "updatedAt",
+            dataIndex: "createdAt",
             sorter: false,
             render: (_: any, myAssessment: any) => (
                 <>
                     <p>
                         {moment(
                             convertDateToTimezone(
-                                myAssessment?.updatedAt,
+                                myAssessment?.createdAt,
                                 EST_TIMEZONE,
                             ),
                         ).format(DETAIL_DATE_FORMAT)}
@@ -145,7 +145,7 @@ const MyAssessmentContainer = () => {
                         {" "}
                         {moment(
                             convertDateToTimezone(
-                                myAssessment?.updatedAt,
+                                myAssessment?.createdAt,
                                 EST_TIMEZONE,
                             ),
                         ).format(DETAIL_TIME_FORMAT)}

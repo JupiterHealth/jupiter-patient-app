@@ -86,9 +86,6 @@ export const fetchMyAssessment = (queryParams: any) => async (
 ) => {
     dispatch(myAssessmentStarted());
     try {
-        console.log("🚀 -----------------------------🚀");
-        console.log("🚀 ~ queryParams:", queryParams);
-        console.log("🚀 -----------------------------🚀");
         const myAssessment: MyAssessmentResponse = await getMyAssessmentListAPI(
             queryParams,
         );

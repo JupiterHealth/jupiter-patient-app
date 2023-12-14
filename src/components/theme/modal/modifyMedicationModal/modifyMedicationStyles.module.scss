@@ -4,6 +4,8 @@
     @media (max-width: 767px) {
         position: relative;
         bottom: 2px;
+        display: contents;
+        left: 20px;
     }
 }
 
@@ -56,5 +58,10 @@
                 display: block !important;
             }
         }
+    }
+}
+.checkbox {
+    > div {
+        margin-top: 4px !important;
     }
 }

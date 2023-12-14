@@ -155,9 +155,7 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
         if (appContext.ctx.req) {
             const cookies = new Cookies(ctx.req.headers.cookie);
             const authCookies: any = cookies.get(PATIENT_COOKIE);
-            console.log("🚀 -----------------------------🚀");
-            console.log("🚀 ~ authCookies:", authCookies);
-            console.log("🚀 -----------------------------🚀");
+
             // Server Side Axios Setup.
             const axiosInstance = API(true);
             axiosInstance.interceptors.request.use(
@@ -195,47 +193,23 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
                     }
                 }
             }
-            // Fill data of loginUser in redux from Serverside.
 
-            console.log(
-                "🚀 -------------------------------------------------------------------------🚀",
-            );
-            console.log(
-                "🚀 ~ authCookies?.session?.accessToken:",
-                authCookies?.session?.accessToken,
-            );
-            console.log(
-                "🚀 -------------------------------------------------------------------------🚀",
-            );
+            // Fill data of loginUser in redux from Serverside.
             if (authCookies?.session?.accessToken) {
                 try {
-                    console.log(
-                        "🚀 -------------------------------------------------------------------------🚀",
-                    );
-                    console.log("🚀 ~ login:", "Login");
-                    console.log(
-                        "🚀 -------------------------------------------------------------------------🚀",
-                    );
                     const loginUser = await getLoginUser({
-                        // authorization: `Bearer ${authCookies?.session?.accessToken}`,
-                        authorization: `${authCookies?.session?.accessToken}`,
+                        authorization: `Bearer ${authCookies?.session?.accessToken}`,
                     });
-                    console.log("🚀 -------------------------🚀");
-                    console.log("🚀 ~ loginUserRAXIT:", loginUser);
-                    console.log("🚀 -------------------------🚀");
 
                     store.dispatch(signupUserSuccess(loginUser));
                     store.dispatch(loginUserSuccess(loginUser));
                 } catch (e: any) {
-                    console.log("🚀 -------------------------🚀");
-                    console.log("🚀 ~ e.message:", e.message);
-                    console.log("🚀 -------------------------🚀");
-                    // store.dispatch(signupUserFail(e.message));
-                    // store.dispatch(loginUserFail(e.message));
-                    // store.dispatch(signupReset());
-                    // store.dispatch(loginReset());
-                    // store.dispatch(signupUserReset());
-                    // store.dispatch(loginUserReset());
+                    store.dispatch(signupUserFail(e.message));
+                    store.dispatch(loginUserFail(e.message));
+                    store.dispatch(signupReset());
+                    store.dispatch(loginReset());
+                    store.dispatch(signupUserReset());
+                    store.dispatch(loginUserReset());
                 }
             }
         } else {

@@ -495,12 +495,12 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 setImageData(updatedImgObj);
                 reset({
                     insuranceAdditionalDetails:
-                        assessMentDetails.checkout.insuranceAdditionalDetails,
+                        assessMentDetails?.checkout?.insuranceAdditionalDetails,
                 });
                 setCheckoutPayload((d: any) => {
                     return {
                         applyInsurance:
-                            assessMentDetails.checkout.applyInsurance,
+                            assessMentDetails?.checkout?.applyInsurance,
                     };
                 });
             }
@@ -591,7 +591,6 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                         answers: currentQuestionObj?.answers,
                     };
                 }
-
                 const responseFromNext = await assessmentQuestionSendAPI(
                     questionPayload,
                     assessmentId,
@@ -771,7 +770,7 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                     let payload = {};
                     if (checkoutPayload.applyInsurance) {
                         payload = {
-                            applyInsurance: checkoutPayload.applyInsurance,
+                            applyInsurance: checkoutPayload?.applyInsurance,
                             insurance: imagePayload,
                             insuranceAdditionalDetails:
                                 watchFields["insuranceAdditionalDetails"],
@@ -905,16 +904,32 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 router.push(router);
             }
             if (activeQuestionId === "upload-identification") {
-                router.query.activeQuestionId = "delivery-address";
-                router.push(router);
+                if (
+                    assessMentDetails?.treatmentOption?.treatment
+                        ?.hasLocalPharmacy === true
+                ) {
+                    router.query.activeQuestionId = "treatment-frequency";
+                    router.push(router);
+                } else {
+                    router.query.activeQuestionId = "delivery-address";
+                    router.push(router);
+                }
             }
             if (activeQuestionId === "upload-insurance") {
                 router.query.activeQuestionId = "upload-identification";
                 router.push(router);
             }
             if (activeQuestionId === "checkout") {
-                router.query.activeQuestionId = "upload-insurance";
-                router.push(router);
+                if (
+                    assessMentDetails?.treatmentOption?.treatment
+                        ?.hasLocalPharmacy === true
+                ) {
+                    router.query.activeQuestionId = "upload-identification";
+                    router.push(router);
+                } else {
+                    router.query.activeQuestionId = "upload-insurance";
+                    router.push(router);
+                }
             }
         }
     };
@@ -960,11 +975,16 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
         return true;
     };
 
+    // Set scale to default 7 when there is no other selected
     useEffect(() => {
         if (currentQuestionObj?.qId === "QUE_G_2") {
-            setScale(7);
+            if (!scale) {
+                setScale(7);
+            } else {
+                setScale(scale);
+            }
         }
-    }, [currentQuestionObj?.qId]);
+    }, [currentQuestionObj?.qId, scale]);
 
     // FUNCTION FOR DISABLE NEXT AND BACK BUTTON
     const handleDisabled = () => {
@@ -1001,50 +1021,40 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 }
             } else if (currentQuestionObj?.answers.length === 0) {
                 return true;
-            }
-            // else if (["QUE_1", "QUE_2", "QUE_6"].includes(activeQuestionId)) {
-            //     let otherOptionField = 2;
-            //     activeQuestionId === "QUE_1" ? (otherOptionField = 1) : "";
-            //     if (currentQuestionObj?.answers.length === 1) {
-            //         const checkAnyOptionPresent = currentQuestionObj.options.every(
-            //             (option) => {
-            //                 return !currentQuestionObj.answers.includes(
-            //                     option.key,
-            //                 );
-            //             },
-            //         );
-            //         if (checkAnyOptionPresent) {
-            //             return true;
-            //         }
-            //     }
+            } else if (["QUE_1", "QUE_2", "QUE_6"].includes(activeQuestionId)) {
+                let otherOptionField = 2;
+                activeQuestionId === "QUE_1" ? (otherOptionField = 1) : "";
+                if (currentQuestionObj?.answers.length === 1) {
+                    const checkAnyOptionPresent = currentQuestionObj.options.every(
+                        (option) => {
+                            return !currentQuestionObj.answers.includes(
+                                option.key,
+                            );
+                        },
+                    );
+                    if (checkAnyOptionPresent) {
+                        return true;
+                    }
+                }
 
-            //     if (
-            //         currentQuestionObj?.answers.includes(
-            //             `${
-            //                 currentQuestionObj?.options?.[
-            //                     currentQuestionObj?.options.length -
-            //                         otherOptionField
-            //                 ]?.key
-            //             }`,
-            //         )
-            //     ) {
-            //         if (
-            //             !watchFields["otherText"] ||
-            //             (watchFields["otherText"] &&
-            //                 watchFields["otherText"].trim() === "") ||
-            //             formState?.isDirty
-            //         ) {
-            //             return true;
-            //         }
-            //     }
-            // }
-            else {
                 if (
-                    !currentQuestionObj?.options?.some((option) =>
-                        currentQuestionObj?.answers?.includes(option.key),
+                    currentQuestionObj?.answers.includes(
+                        `${
+                            currentQuestionObj?.options?.[
+                                currentQuestionObj?.options.length -
+                                    otherOptionField
+                            ]?.key
+                        }`,
                     )
                 ) {
-                    return true;
+                    {
+                        if (
+                            watchFields["otherText"] === "" ||
+                            !formState.isValid
+                        ) {
+                            return true;
+                        }
+                    }
                 }
             }
         }
@@ -1070,10 +1080,8 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                         return true;
                     }
                 } else if (
-                    !watchFields["otherText"] ||
-                    (watchFields["otherText"] &&
-                        watchFields["otherText"].trim() === "") ||
-                    formState?.isDirty
+                    watchFields["otherText"] === "" ||
+                    !formState?.isValid
                 ) {
                     return true;
                 }
@@ -1192,7 +1200,7 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                     title={
                         currentQuestionObj?.flagTitle
                             ? currentQuestionObj?.flagTitle
-                            : "Assessment Flagged"
+                            : "Important Health Notice"
                     }
                     description={
                         currentQuestionObj?.flagText

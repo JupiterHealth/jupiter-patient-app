@@ -1,5 +1,6 @@
 import { optionType, questionObj } from "@redux/slices/assessment";
 import {
+    AssessmentTextAreaField,
     FormGroup,
     InputRadioField,
     TextAreaField,
@@ -122,7 +123,7 @@ const CommonRadioForAssessment = (props: CommonRadioForAssessmentProps) => {
                             <FormGroup
                                 className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                             >
-                                <TextAreaField
+                                <AssessmentTextAreaField
                                     {...{
                                         register,
                                         formState,
@@ -138,6 +139,7 @@ const CommonRadioForAssessment = (props: CommonRadioForAssessmentProps) => {
                                         onChange: (e: any) => {
                                             handleTextareaChange(e);
                                         },
+                                        autoFocus: true,
                                     }}
                                 />
                             </FormGroup>

@@ -2,6 +2,7 @@ import { fetchTreatmentAPI } from "@redux/services/assessment.api";
 import { treatmentType } from "@redux/slices/assessment";
 import { Col, Row, Spin } from "antd";
 import {
+    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -337,7 +338,7 @@ const TreatmentOption = (props: TreatmentOptionProps) => {
                     </p>
                 </div>
                 <FormGroup className="!mb-4">
-                    <TextAreaField
+                    <AssessmentTextAreaField
                         {...{
                             register,
                             formState,

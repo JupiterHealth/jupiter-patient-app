@@ -1,5 +1,6 @@
 import { optionType, questionObj } from "@redux/slices/assessment";
 import {
+    AssessmentTextAreaField,
     FormGroup,
     InputRadioField,
     TextAreaField,
@@ -76,7 +77,7 @@ const Hospitalized = (props: HospitalizedProps) => {
                 ) && (
                     <div className="mt-10 w-full md:w-[600px] mx-auto">
                         <FormGroup className="!mb-4">
-                            <TextAreaField
+                            <AssessmentTextAreaField
                                 {...{
                                     register,
                                     formState,

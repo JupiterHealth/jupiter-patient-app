@@ -1,4 +1,5 @@
 import {
+    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -179,7 +180,7 @@ const UploadInsurer = (props: UploadInsurerProps) => {
                 </div>
             )}
             <FormGroup className={`!mb-4 mt-7 ${CheckoutStyle.asteriskRemove}`}>
-                <TextAreaField
+                <AssessmentTextAreaField
                     {...{
                         register,
                         formState,
@@ -195,6 +196,7 @@ const UploadInsurer = (props: UploadInsurerProps) => {
             </FormGroup>
             <div className={`flex mt-5 ${CheckoutStyle.insuranceCheckBox}`}>
                 <Checkbox
+                    id="insuranceCheckbox"
                     checked={!checkoutPayload.applyInsurance}
                     onChange={(e: any) => {
                         setCheckoutPayload((d: any) => {
@@ -204,12 +206,16 @@ const UploadInsurer = (props: UploadInsurerProps) => {
                             return newState;
                         });
                     }}
-                >
-                    <p className="text-base text-start font-medium pl-2 flex items-center mt-[2px]">
+                ></Checkbox>
+                <div>
+                    <label
+                        htmlFor="insuranceCheckbox"
+                        className="text-base text-start font-medium pl-2 flex items-center mt-[2px]"
+                    >
                         I don’t have insurance or don’t want to apply insurance
                         to this prescription
-                    </p>
-                </Checkbox>
+                    </label>
+                </div>
             </div>
         </div>
     );

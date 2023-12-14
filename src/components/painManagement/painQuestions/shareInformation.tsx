@@ -1,4 +1,5 @@
 import {
+    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -31,7 +32,7 @@ const ShareInformation = (props: ShareInformationProps) => {
                     <p className="text-base">Please enter details below</p>
                 </div>
                 <FormGroup className="!mb-4">
-                    <TextAreaField
+                    <AssessmentTextAreaField
                         {...{
                             register,
                             formState,

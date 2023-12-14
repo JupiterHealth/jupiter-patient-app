@@ -178,7 +178,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                         form="modifyMedicationForm"
                         className={`mt-5 md:mt-0 !ml-0 md:!ml-5 btn-primary antLoaderButton ${ModifyMedicationStyles.disableButton}`}
                     >
-                        Modify Medications
+                        Submit Request
                     </Button>
                 </div>
             }
@@ -282,7 +282,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                                         setValue("isSelectEarlyRefill", false);
                                     }
                                 },
-                                className: "w-[18px] h-[18px]",
+                                className: "w-[18px] h-[18px] mr-2 md:mr-0",
                             }}
                         />
                         <div
@@ -334,7 +334,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                                     }
                                 },
 
-                                className: "w-[18px] h-[18px]",
+                                className: "w-[18px] h-[18px] mr-2 md:mr-0",
                             }}
                         />
                         <div
@@ -374,7 +374,9 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                             </div>
                         </div>
                     )}
-                    <div className="mt-4 flex flex-wrap justify-start items-center">
+                    <div
+                        className={`mt-4 flex justify-start items-start break-words md:items-center  ${ModifyMedicationStyles.checkbox}`}
+                    >
                         <CheckBoxField
                             {...{
                                 register,
@@ -393,7 +395,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                                         );
                                     }
                                 },
-                                className: "w-[18px] h-[18px]",
+                                className: "w-[18px] h-[18px] mr-2 md:mr-0",
                             }}
                         />
                         <div

@@ -9,7 +9,6 @@ import {
     MyAssessmentListState,
     fetchMyAssessment,
 } from "@redux/slices/myAssessment";
-import { message } from "antd";
 import useList from "jupiter-commons/src/components/libs/useList";
 import router from "next/router";
 import { useEffect, useState } from "react";
@@ -163,7 +162,18 @@ const DashboardContainer = () => {
                     router.push(
                         `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
-                } else if (assessmentRes?.checkout?.shippingAddress) {
+                } else if (
+                    assessmentRes?.treatmentOption?.treatment &&
+                    assessmentRes?.treatmentOption?.treatment?.hasLocalPharmacy
+                ) {
+                    router.query.activeQuestionId = "upload-identification";
+                    router.push(
+                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                    );
+                } else if (
+                    assessmentRes?.checkout?.shippingAddress &&
+                    assessmentRes?.checkout?.shippingAddress
+                ) {
                     router.query.activeQuestionId = "delivery-address";
 
                     router.push(
@@ -232,6 +242,7 @@ const DashboardContainer = () => {
             setLoadingRedirectAssessment(false);
         }
     };
+
     useEffect(() => {
         dispatch(
             fetchMyAssessment({
@@ -242,13 +253,6 @@ const DashboardContainer = () => {
             }),
         );
     }, [apiParam]);
-
-    console.log("🚀 -----------------------------------------------------🚀");
-    console.log("🚀 ~ loginUserData?.user?.id:", loginUserData?.user?.id);
-    console.log("🚀 -----------------------------------------------------🚀");
-    console.log("🚀 -------------------------------------------------------🚀");
-    console.log("🚀 ~ SignupUserData?.user?.id:", SignupUserData?.user?.id);
-    console.log("🚀 -------------------------------------------------------🚀");
 
     useEffect(() => {
         handleFetchServiceForDashboard();
