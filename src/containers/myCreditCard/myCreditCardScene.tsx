@@ -118,7 +118,7 @@ const MyCreditCardScene = (props: MyCreditCardSceneProps) => {
                                                         register,
                                                         formState,
                                                         id: listItem?.id,
-                                                        name: "default",
+                                                        name: listItem?.id,
                                                         value:
                                                             listItem?.isDefault,
                                                         className: "mb-2",

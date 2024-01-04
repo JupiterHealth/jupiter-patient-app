@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "antd";
 import { Button } from "jupiter-commons/src/components/theme/button/button";
 import ConsentFormStyles from "./consentFormModal.module.scss";
+import { DEFAULT_PRIVACY_EMAIL } from "jupiter-commons/src/components/libs/constants";
 
 export interface ConsentFormModalProps {
     isOpen?: boolean;
@@ -333,13 +334,14 @@ const ConsentFormModal = (props: ConsentFormModalProps) => {
                     <p className="text-sm font-medium pt-1">
                         The Privacy Officer can be reached at{" "}
                         <a
-                            href="mailto:privacy@jupiterhealth.com"
+                            href={`mailto:${DEFAULT_PRIVACY_EMAIL}`}
                             target="_blank"
                         >
-                            <span className="font-medium">
-                                privacy@jupiterhealth.ca
+                            <span className="text-secondary font-medium">
+                                {DEFAULT_PRIVACY_EMAIL}
                             </span>
                         </a>{" "}
+                        {""}
                         for any concerns related to the privacy policy or terms
                         of use.
                     </p>

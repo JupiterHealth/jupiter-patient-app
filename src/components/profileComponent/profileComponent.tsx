@@ -13,6 +13,7 @@ import { FemaleIcon } from "jupiter-commons/src/components/theme/icons/femaleIco
 import { MaleIcon } from "jupiter-commons/src/components/theme/icons/maleIcon";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import ProfileComponentStyles from "./profileComponentStyle.module.scss";
 
 export interface ProfileComponentProps {
     formState: any;
@@ -22,7 +23,7 @@ export interface ProfileComponentProps {
     setSelectedOption: (d: any) => any;
     onSubmit: (d: any) => any;
     selectedOption: string;
-    assessMentDetails: any;
+    assessMentDetails?: any;
     watchFields: any;
 }
 
@@ -57,7 +58,9 @@ const ProfileComponent = (props: ProfileComponentProps) => {
                 </p>
                 <Row className="mt-5 md:mt-9" gutter={32}>
                     <Col span={24} md={12}>
-                        <FormGroup>
+                        <FormGroup
+                            className={`${ProfileComponentStyles.inputHoverEffect}`}
+                        >
                             <InputField
                                 {...{
                                     register,
@@ -75,7 +78,9 @@ const ProfileComponent = (props: ProfileComponentProps) => {
                         </FormGroup>
                     </Col>
                     <Col span={24} md={12}>
-                        <FormGroup>
+                        <FormGroup
+                            className={`${ProfileComponentStyles.inputHoverEffect}`}
+                        >
                             <InputField
                                 {...{
                                     register,
@@ -308,7 +313,7 @@ const ProfileComponent = (props: ProfileComponentProps) => {
                     </>
                 )}
                 <Row gutter={32}>
-                    <Col span={24} md={12} className="mt-6">
+                    <Col span={24} md={12} className="md:mt-2 mt-6">
                         <FormGroup className="reactSelect !mb-0">
                             <SelectField
                                 {...{

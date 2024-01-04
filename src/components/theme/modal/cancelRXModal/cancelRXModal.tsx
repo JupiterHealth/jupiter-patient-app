@@ -101,17 +101,23 @@ const CancelRXModal = (props: CancelRXModalProps) => {
 
     useEffect(() => {
         if (selectedAssessment) {
-            const updatedMedications = [selectedAssessment["drg"]]?.map(
-                (product: any) => {
-                    return {
-                        label: product?.brName,
-                        value: {
-                            productId: product?.id,
-                            productName: product?.brName,
-                        },
-                    };
+            const medicationData: any =
+                selectedAssessment["drg"] === null
+                    ? selectedAssessment["drgMix"]
+                    : selectedAssessment["drg"];
+            const updatedMedications = [
+                {
+                    label: medicationData?.brName
+                        ? medicationData?.brName
+                        : medicationData?.description,
+                    value: {
+                        productId: medicationData?.id,
+                        productName: medicationData?.brName
+                            ? medicationData?.brName
+                            : medicationData?.description,
+                    },
                 },
-            );
+            ];
             setMedicationOptions(updatedMedications);
         }
     }, [selectedAssessment]);

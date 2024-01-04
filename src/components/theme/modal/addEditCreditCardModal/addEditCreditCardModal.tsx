@@ -25,14 +25,12 @@ import {
 } from "jupiter-commons/src/components/libs/helpers";
 import {
     FormGroup,
-    InputCreditDateField,
     InputField,
     InputGoogleAutoCompleteField,
     InputRadioField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
 import { stripe } from "../../../../libs/stripe";
 import CreditCardModalStyle from "./creditCardStyle.module.scss";
-import moment from "moment";
 
 export interface AddEditCreditCardModalProps {
     isOpen?: boolean;
@@ -58,14 +56,11 @@ const AddEditCreditCardModal = (props: AddEditCreditCardModalProps) => {
         setFocus,
         handleSubmit,
         reset,
-        watch,
     } = useForm<AddNewCardFormInputs>({
         resolver: yupResolver(AddNewCardFormValidateSchema),
     });
-    const formValues = watch();
     const [checkedVal, setCheckedVal]: any = useState([]);
     const [isSetDefault, setIsSetDefault] = useState(false);
-    const monthFormat = "MM/YYYY";
 
     const checkValidation = (value: any) => {
         if (value) {
@@ -76,6 +71,22 @@ const AddEditCreditCardModal = (props: AddEditCreditCardModalProps) => {
             });
         } else if (!value) {
             setCheckedVal(null);
+        }
+    };
+
+    const convertFormat = (input: any) => {
+        const regex = /^[\d/]+$/;
+        if (regex.test(input)) {
+            const newReg = /^(0[1-9]|1[0-2])\/?(\d{4})$/;
+
+            if (newReg.test(input)) {
+                return input.replace(newReg, "$1/$2");
+            } else {
+                const temp = input.replace(/(.*)\/(.*)/, "$1$2");
+                return temp;
+            }
+        } else {
+            return "";
         }
     };
 
@@ -352,7 +363,7 @@ const AddEditCreditCardModal = (props: AddEditCreditCardModalProps) => {
                             <Row gutter={15}>
                                 <Col span={24} md={12} className="md:!pr-3">
                                     <FormGroup className={`mb-0`}>
-                                        <InputCreditDateField
+                                        {/* <InputCreditDateField
                                             {...{
                                                 register,
                                                 formState,
@@ -369,6 +380,33 @@ const AddEditCreditCardModal = (props: AddEditCreditCardModalProps) => {
                                                               formValues?.exp_month,
                                                           )
                                                         : null,
+                                                value: formattedDate
+                                                    ? moment(
+                                                          formattedDate,
+                                                          "MM/DD/YY",
+                                                      )
+                                                    : null,
+                                                // onBlur: (e: any) =>
+                                                //     handleDateChange(e),
+                                            }}
+                                        /> */}
+                                        <InputField
+                                            {...{
+                                                register,
+                                                formState,
+                                                id: "exp_month",
+                                                label: "Expiry Date",
+                                                maxLength: 7,
+                                                minLength: 7,
+                                                placeholder: "MM/YYYY",
+                                            }}
+                                            onChange={(e: any) => {
+                                                setValue(
+                                                    "exp_month",
+                                                    convertFormat(
+                                                        e.target.value,
+                                                    ),
+                                                );
                                             }}
                                         />
                                     </FormGroup>

@@ -1,14 +1,80 @@
-import ComplimentarySupplements from "@components/treatmentOption/acneTreatmentOption";
-import Prescription from "@components/treatmentOption/treatmentFrequency";
-import TreatmentOption from "@components/treatmentOption/treatmentOption";
-import React from "react";
+import HairRegrowthComplimentingSupplements from "@components/treatmentOption/hairRegrowthComplimentingSupplements";
+import HairRegrowthTreatmentOptions from "@components/treatmentOption/hairRegrowthTreatmentOptions";
+import TreatmentFrequency from "@components/treatmentOption/treatmentFrequency";
+import { treatmentType } from "@redux/slices/assessment";
 
-const Step4Component = () => {
+export interface Step4ComponentProps {
+    activeQuestionId?: string;
+    medicines: any;
+    setMedicines: (d: any) => void;
+    setSendPrescriptionModal: (d?: any) => void;
+    selectedTreatment: treatmentType;
+    setSelectedTreatment: (d: any) => any;
+    register: (d: any) => any;
+    formState: any;
+    assessMentDetails: any;
+    assessmentId: string;
+    setValue?: any;
+    setProduct: (d: any) => any;
+    setSelectedProduct?: any;
+    selectedProduct?: any;
+}
+
+const Step4Component = (props: Step4ComponentProps) => {
+    const {
+        activeQuestionId,
+        medicines,
+        setMedicines,
+        setSendPrescriptionModal,
+        selectedTreatment,
+        setSelectedTreatment,
+        register,
+        formState,
+        assessMentDetails,
+        assessmentId,
+        setValue,
+        setProduct,
+        setSelectedProduct,
+        selectedProduct,
+    } = props;
+
     return (
-        <div className="container">
-            {/* <TreatmentOption /> */}
-            {/* <ComplimentarySupplements /> */}
-            {/* <Prescription /> */}
+        <div>
+            {activeQuestionId === "treatment-options" && (
+                <HairRegrowthTreatmentOptions
+                    {...{
+                        selectedTreatment,
+                        setSelectedTreatment,
+                        formState,
+                        register,
+                        assessmentId,
+                        setValue,
+                        setProduct,
+                        setSelectedProduct,
+                        selectedProduct,
+                        assessMentDetails,
+                    }}
+                />
+            )}
+            {activeQuestionId === "complementing-suppliments" && (
+                <HairRegrowthComplimentingSupplements
+                    {...{
+                        selectedTreatment,
+                        setSelectedTreatment,
+                        assessmentId,
+                    }}
+                />
+            )}
+            {activeQuestionId === "treatment-frequency" && (
+                <TreatmentFrequency
+                    {...{
+                        setSendPrescriptionModal,
+                        register,
+                        formState,
+                        assessMentDetails,
+                    }}
+                />
+            )}
         </div>
     );
 };

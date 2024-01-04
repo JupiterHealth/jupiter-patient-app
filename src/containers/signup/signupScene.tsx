@@ -153,36 +153,34 @@ const SignupScene = (props: SignupSceneProps) => {
                                                 handleCheckPasswordCriteria(
                                                     e?.target?.value,
                                                 ),
-                                            onFocus: () =>
-                                                handleUpdateCommonStates({
-                                                    isValidationSectionShow: true,
-                                                }),
-                                            onBlur: () =>
-                                                handleUpdateCommonStates({
-                                                    isValidationSectionShow: false,
-                                                }),
+                                            // onFocus: () =>
+                                            //     handleUpdateCommonStates({
+                                            //         isValidationSectionShow: true,
+                                            //     }),
+                                            // onBlur: () =>
+                                            //     handleUpdateCommonStates({
+                                            //         isValidationSectionShow: false,
+                                            //     }),
                                         }}
                                     />
                                 </FormGroup>
                                 <div>
                                     {/* Input Validation start here */}
-                                    {isValidationSectionShow && (
-                                        <PasswordRequiredComponent
-                                            {...{
-                                                lengthValidated,
-                                                specialValidated,
-                                                caseSensitiveValidated,
-                                                numberValidated,
-                                            }}
-                                        />
-                                    )}
+                                    {/* {isValidationSectionShow && ( */}
+                                    <PasswordRequiredComponent
+                                        {...{
+                                            lengthValidated,
+                                            specialValidated,
+                                            caseSensitiveValidated,
+                                            numberValidated,
+                                        }}
+                                    />
+                                    {/* )} */}
                                     {/* Input Validation end here */}
                                 </div>
                                 <div
                                     className={
-                                        isValidationSectionShow
-                                            ? "pt-16 md:pt-14 xl:pt-12 2xl:pt-12 flex !items-start mt-1 w-full"
-                                            : "pt-1 flex !items-start mt-3 xl:mt-1 w-full"
+                                        "pt-12 flex !items-start mt-3 xl:mt-1 w-full"
                                     }
                                 >
                                     <CheckBoxField
@@ -292,7 +290,7 @@ const SignupScene = (props: SignupSceneProps) => {
             )}
             {isOtpVerification && (
                 <form onSubmit={onOtpSubmit}>
-                    <div className="flex justify-center h-[235px]">
+                    <div className="flex justify-center">
                         <div>
                             <h1 className="text-3xl xl:text-2xl 2xl:text-2xl font-bold text-secondary">
                                 Verify your email
@@ -338,13 +336,13 @@ const SignupScene = (props: SignupSceneProps) => {
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                className={`btn-primary text-lg font-medium px-9 mx-auto flex items-center justify-center !mt-11 antLoaderButton`}
+                                className={`btn-primary text-lg font-medium px-9 mx-auto flex items-center justify-center !mt-9 antLoaderButton`}
                                 loading={isOtpSubmitting}
                                 disabled={!otp || otp.length !== 6}
                             >
                                 Verify
                             </Button>
-                            <div className="mt-5">
+                            <div className="mt-3">
                                 <h3 className="mt-3 text-center text-primary font-bold">
                                     {handleFormatTimer(counter)}
                                 </h3>
@@ -362,6 +360,15 @@ const SignupScene = (props: SignupSceneProps) => {
                                         Resend Code
                                     </Button>
                                 </div>
+                            </div>
+                            <div className="mx-auto md:mt-3 mt-16">
+                                <p className="text-sm font-medium text-light-black">
+                                    <span className="font-bold">
+                                        Disclaimer :
+                                    </span>{" "}
+                                    Didn’t receive the code? Check your spam
+                                    folder or Resend Code.
+                                </p>
                             </div>
                         </div>
                     </div>

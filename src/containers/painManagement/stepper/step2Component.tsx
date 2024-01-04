@@ -23,6 +23,7 @@ export interface Step2ComponentProps {
     backParts?: any;
     setBackParts: (d?: any) => any;
     setValue?: any;
+    router: any;
 }
 const Step2Component = (props: Step2ComponentProps) => {
     const {
@@ -42,6 +43,7 @@ const Step2Component = (props: Step2ComponentProps) => {
         setFrontParts,
         setBackParts,
         setValue,
+        router,
     } = props;
 
     return (
@@ -56,6 +58,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         setValue,
                         watch,
                         other: true,
+                        router,
                         setAssessmentFlag,
                         handleTextareaChange,
                         unregister,
@@ -83,6 +86,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                             optionForOtherTextbox: 2,
                             otherLabel:
                                 "Please provide diagnosis, treatment plan and date",
+                            router,
                         }}
                     />
                 </div>
@@ -96,6 +100,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: false,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -119,6 +124,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         setAssessmentFlag,
                         activeQuestionId,
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -131,6 +137,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: false,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -149,6 +156,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: false,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -166,6 +174,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: true,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -185,6 +194,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: true,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -224,6 +234,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         activeQuestionId,
                         setAssessmentFlag,
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -240,6 +251,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         activeQuestionId,
                         setAssessmentFlag,
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -257,6 +269,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         setAssessmentFlag,
                         optionForOtherTextbox: 2,
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -275,6 +288,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         optionForOtherTextbox: 1,
                         otherLabel: "Provide further detail",
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -293,6 +307,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         optionForOtherTextbox: 1,
                         otherLabel: "Provide further detail",
                         setValue,
+                        router,
                     }}
                 />
             )}
@@ -305,7 +320,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
-                        other: false,
+                        other: true,
                         setAssessmentFlag,
                         handleTextareaChange,
                         unregister,
@@ -313,6 +328,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         colSpan: 12,
                         mobilecolSpan: 24,
                         noneOftheAbove: true,
+                        router,
                     }}
                 />
             )}
@@ -351,6 +367,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         formState,
                         watch,
                         setValue,
+                        router,
                         other: false,
                         setAssessmentFlag,
                         handleTextareaChange,
@@ -371,6 +388,7 @@ const Step2Component = (props: Step2ComponentProps) => {
                         watch,
                         setValue,
                         other: false,
+                        router,
                         setAssessmentFlag,
                         handleTextareaChange,
                         unregister,

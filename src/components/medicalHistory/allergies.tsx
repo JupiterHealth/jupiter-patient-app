@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Row, message } from "antd";
 import {
-    AssessmentTextAreaField,
-    CreatableSelectField,
     FormGroup,
     InputRadioField,
     TextAreaField,
@@ -104,9 +102,9 @@ const Allergies = (props: MedicationProps) => {
                                 <span className="text-danger">*</span>
                             </div>
                             <Col span={24} md={19}>
-                                <div className="relative">
+                                <div className="">
                                     <FormGroup
-                                        className={`reactSelect w-full !mb-0 ${AllergiesStyles.reactSelect}`}
+                                        className={`reactSelect !mb-0 ${AllergiesStyles.reactSelect}`}
                                     >
                                         <CreatableSelect
                                             {...{
@@ -114,7 +112,10 @@ const Allergies = (props: MedicationProps) => {
                                                 formState,
                                                 control,
                                                 id: "allergy",
-                                                className: "ant-react-select",
+                                                className:
+                                                    "ant-react-select create-table-field",
+                                                classNamePrefix:
+                                                    "creatable-select",
                                                 options: selectOptions,
                                                 onInputChange: (
                                                     inputValue: any,
@@ -151,9 +152,10 @@ const Allergies = (props: MedicationProps) => {
                                     className={`btn-primary ml-5 mt-7 md:mt-0 !h-[36px] ${AllergiesStyles.buttonHoverEffect}`}
                                     onClick={() => {
                                         if (
-                                            !medicines.find(
+                                            !medicines?.find(
                                                 (item: any) =>
-                                                    item.key === searchMedicine,
+                                                    item?.key ===
+                                                    searchMedicine,
                                             )
                                         ) {
                                             setAllergy(
@@ -185,7 +187,7 @@ const Allergies = (props: MedicationProps) => {
                             <p className="text-start text-sm md:text-base font-bold w-1/2 md:w-auto">
                                 Allergy name
                             </p>
-                            <p className="text-start text-sm md:text-base font-bold w-[60%] md:w-[55%]">
+                            <p className="text-start text-sm md:text-base font-bold w-[50%] md:w-[55%]">
                                 Nature of allergic reaction
                             </p>
                         </div>
@@ -205,18 +207,18 @@ const Allergies = (props: MedicationProps) => {
                 ) && (
                     <div className="mt-7 mx-auto w-full md:w-[640px]">
                         {medicines &&
-                            medicines.map((medicine: any) => (
+                            medicines?.map((medicine: any) => (
                                 <div className="flex items-start justify-between mt-4">
                                     <div className="flex items-center w-[44%] md:w-[44%]">
                                         <p className="ml-5 capitalize text-start text-sm md:text-base font-medium circleSecondaryTop">
                                             {(medicine?.key).replace(/_/g, " ")}
                                         </p>
                                     </div>
-                                    <div className="flex items-start w-[55%]">
+                                    <div className="flex items-start w-[50%]">
                                         <FormGroup
                                             className={`!mb-4 w-full ${AllergiesStyles.textarea}`}
                                         >
-                                            <AssessmentTextAreaField
+                                            <TextAreaField
                                                 {...{
                                                     register,
                                                     formState,
@@ -232,10 +234,10 @@ const Allergies = (props: MedicationProps) => {
                                                         "w-full  overflow-y-auto",
                                                     onChange: (e: any) => {
                                                         {
-                                                            const updatedArray = medicines.map(
+                                                            const updatedArray = medicines?.map(
                                                                 (item: any) => {
                                                                     if (
-                                                                        item.key ===
+                                                                        item?.key ===
                                                                         medicine?.key
                                                                     ) {
                                                                         // Toggle the selected property for the matching item
@@ -269,7 +271,10 @@ const Allergies = (props: MedicationProps) => {
                                                             medicine?.key,
                                                     );
                                                 });
-                                                setValue(`${medicine.key}`, "");
+                                                setValue(
+                                                    `${medicine?.key}`,
+                                                    "",
+                                                );
                                             }}
                                         >
                                             <DeleteIcon className="w-5 h-5 ml-4 cursor-pointer" />

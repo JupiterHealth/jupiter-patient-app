@@ -1,6 +1,9 @@
-// .dateField {
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
 
-//     :global(.ant-picker-suffix) {
-//         margin-top: -5px !important;
-//     }
-// }
+.inputHoverEffect {
+    :global(.ant-input[disabled]) {
+        &:hover {
+            border-color: #d9d9d9 !important;
+        }
+    }
+}

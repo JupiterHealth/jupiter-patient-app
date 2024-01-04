@@ -35,21 +35,27 @@ const TreatmentFrequency = (props: TreatmentFrequencyProps) => {
                 <div
                     className={`p-5 pl-7 border-b ${treatmentStyle.treatmentInput}`}
                 >
-                    <InputRadioField
-                        {...{
-                            register,
-                            formState,
-                            id: "one",
-                            name: "deliveryFrequency",
-                            value: "1",
-                            label: "Monthly",
-                        }}
-                        defaultChecked
-                    />
+                    <div className="flex items-center">
+                        <InputRadioField
+                            {...{
+                                register,
+                                formState,
+                                id: "one",
+                                name: "deliveryFrequency",
+                                value: "1",
+                                label: "Monthly",
+                            }}
+                            defaultChecked
+                        />
+                        <p className="md:text-base font-medium text-grey-500 ml-[2px] text-xs">
+                            (Pause or cancel at anytime)
+                        </p>
+                    </div>
                 </div>
+
                 <div className="flex flex-col lg:flex-row pt-6 lg:py-6 px-5 mx-auto lg:overflow-x-auto lg:w-[660px] modern-scrollbar">
-                    {[product] &&
-                        [product].map((s: any) => (
+                    {product &&
+                        product.map((s: any) => (
                             <>
                                 <div className="md:mb-6 lg:mb-0 flex flex-row lg:block items-start lg:items-center w-full lg:w-[250px] min-h-[107px]">
                                     <div className="w-[97px] md:w-[130px] lg:w-full">
@@ -68,10 +74,14 @@ const TreatmentFrequency = (props: TreatmentFrequencyProps) => {
                                             {s?.name}
                                         </p>
                                         <p className="hidden md:block text-secondary text-base md:text-sm font-semibold text-start pt-2 md:pt-3 mb-6 md:mb-0">
-                                            ${(s?.price).toFixed(2)}
+                                            {s &&
+                                                s.price &&
+                                                `$${s.price.toFixed(2)}`}
                                         </p>
                                         <p className="block md:hidden pt-3 pb-4 lg:pt-0 mb-6 lg:mb-0 text-secondary text-sm md:text-sm font-semibold text-start">
-                                            ${(s?.price).toFixed(2)}
+                                            {s &&
+                                                s.price &&
+                                                `$${s.price.toFixed(2)}`}
                                         </p>
                                     </div>
                                 </div>
@@ -99,10 +109,14 @@ const TreatmentFrequency = (props: TreatmentFrequencyProps) => {
                                             {s?.name}
                                         </p>
                                         <p className="hidden md:block text-secondary text-base md:text-sm font-semibold text-start pt-2 md:pt-2 mb-6 md:mb-0">
-                                            ${(s?.price).toFixed(2)}
+                                            {s &&
+                                                s.price &&
+                                                `$${s.price.toFixed(2)}`}
                                         </p>
                                         <p className="block md:hidden pt-2 lg:pt-0 mb-6 lg:mb-0 text-secondary text-sm md:text-sm font-semibold text-start">
-                                            ${(s?.price).toFixed(2)}
+                                            {s &&
+                                                s.price &&
+                                                `$${s.price.toFixed(2)}`}
                                         </p>
                                     </div>
                                 </div>
@@ -144,8 +158,8 @@ const TreatmentFrequency = (props: TreatmentFrequencyProps) => {
                     />
                 </div>
                 <div className="flex flex-col lg:flex-row pt-6 lg:py-6 px-5 mx-auto lg:overflow-x-auto lg:w-[660px] modern-scrollbar">
-                    {[product] &&
-                        [product].map((s: any) => (
+                    {product &&
+                        product.map((s: any) => (
                             <>
                                 <div className="mb-8 lg:mb-0 flex lg:block items-center flex-col w-full lg:w-[250px] -z-[10]">
                                     <div className="w-[97px] md:w-[130px] lg:w-full">

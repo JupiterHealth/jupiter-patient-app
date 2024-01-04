@@ -5,7 +5,16 @@ import {
     addPaymentMethodAPI,
     fetchCreditCardListApi,
 } from "@redux/services/patient-payment-method.api";
-import { Button, Col, Collapse, Row, Space, Spin, Tooltip } from "antd";
+import {
+    Button,
+    Col,
+    Collapse,
+    Row,
+    Space,
+    Spin,
+    Tooltip,
+    message,
+} from "antd";
 import { cards } from "jupiter-commons/src/components/libs/constants";
 import {
     americanPhoneFormat,
@@ -122,7 +131,18 @@ const SubmitAssesment = (props: any) => {
             setIsLoadingCreditCardList(true);
             const res = await fetchCreditCardListApi(apiParam);
             if (res) {
+                const creditCard = res.list.filter(
+                    (item: any) => item.isDefault === true,
+                );
+
+                setPaymentState((d: any) => {
+                    return {
+                        ...d,
+                        creditCardId: creditCard[0]?.id,
+                    };
+                });
                 setCreditCardData(res);
+
                 setIsLoadingCreditCardList(false);
             }
         } catch (error) {
@@ -287,6 +307,15 @@ const SubmitAssesment = (props: any) => {
             setLoadingCheckoutState((d: any) => {
                 return { ...d, isvalidatingPromoCode: true };
             });
+
+            // Check if promoCodeStringValue contains a blank space
+            if (promoCodeStringValue.includes(" ")) {
+                message.error("Promo code cannot contain blank spaces.");
+                setLoadingCheckoutState((d: any) => {
+                    return { ...d, isvalidatingPromoCode: false };
+                });
+                return;
+            }
             const promoCodeRes = await validatePromoCodeAPI(
                 {
                     couponCode: promoCodeStringValue,
@@ -353,18 +382,37 @@ const SubmitAssesment = (props: any) => {
     };
 
     const calculateProductPrice = () => {
-        const productPrice = treatmentOption.product.price;
+        let totalSupplementPrice = 0;
+        let totalProductPrice = 0;
+        const productPrice = treatmentOption.product?.map(
+            (prodPrice: any) => prodPrice?.price,
+        );
+
+        if (productPrice.length > 0) {
+            totalProductPrice = productPrice.reduce(
+                (acc: any, price: any) => acc + price,
+                0,
+            );
+        }
+
         const supplementPrices = treatmentOption.supplements.map(
             (supplement: any) => Number(calculateTax(supplement.price)),
         );
-        const totalSupplementPrice = supplementPrices.reduce(
-            (acc: any, price: any) => acc + price,
-            0,
-        );
 
-        const totalPrice = productPrice + totalSupplementPrice;
+        if (supplementPrices.length > 0) {
+            totalSupplementPrice = supplementPrices.reduce(
+                (acc: any, price: any) => acc + price,
+                0,
+            );
+        }
 
-        return totalPrice;
+        let totalPrice = totalProductPrice + totalSupplementPrice;
+
+        totalPrice = typeof totalPrice === "number" ? totalPrice : 0;
+
+        const formattedTotalPrice = totalPrice.toFixed(2);
+
+        return formattedTotalPrice;
     };
 
     return (
@@ -427,7 +475,12 @@ const SubmitAssesment = (props: any) => {
                                                     register,
                                                     formState,
                                                     id: creditCard?.id,
-                                                    name: "default",
+                                                    name: creditCard?.id,
+                                                    checked:
+                                                        creditCard?.id ===
+                                                        paymentState?.creditCardId
+                                                            ? true
+                                                            : false,
                                                 }}
                                                 defaultChecked={
                                                     creditCard?.id ===
@@ -841,6 +894,7 @@ const SubmitAssesment = (props: any) => {
                                     </form>
                                 </div>
                             )}
+
                         {!isLoadingCreditCardList && (
                             <Col span={24}>
                                 <div className="flex items-center justify-center xl:block mb-6 xl:mb-0">
@@ -877,11 +931,11 @@ const SubmitAssesment = (props: any) => {
                                 placement="bottom"
                                 title={
                                     <p className="font-medium">
-                                        The Assessment Fee covers a consultation
-                                        with a healthcare professional, the
-                                        issuance of a prescription if approved,
-                                        and any subsequent prescription
-                                        renewals.
+                                        The Assessment Fee is a one-time fee
+                                        that includes a consultation with a
+                                        healthcare professional, the issuance of
+                                        a prescription if approved, and any
+                                        subsequent prescription renewals.
                                     </p>
                                 }
                                 overlayStyle={{
@@ -1017,9 +1071,35 @@ const SubmitAssesment = (props: any) => {
                     )}
                     <div className="!border-input border px-4 rounded-[10px] mt-4">
                         <div className="flex justify-between mt-4">
-                            <p className="text-start font-bold 2xl:text-base text-sm">
-                                Treatment Summary
-                            </p>
+                            <div className="flex">
+                                <p className="text-start font-bold 2xl:text-base text-sm">
+                                    Treatment Summary
+                                </p>
+                                <Tooltip
+                                    placement="bottom"
+                                    title={
+                                        <p className="font-medium">
+                                            Prescriptions are issued for up to
+                                            12 months to ensure that you have
+                                            uninterrupted access to your
+                                            treatment, however if for any reason
+                                            you do not wish to receive your next
+                                            refill, you can easily pause your
+                                            medication subscription, request a
+                                            change of medication (at no cost) or
+                                            cancel the medication subscription
+                                            through your Jupiter account.
+                                        </p>
+                                    }
+                                    overlayStyle={{
+                                        minWidth: "20px",
+                                    }}
+                                >
+                                    <p className="ml-2 cursor-pointer">
+                                        <QuestionCircleIconIcon className="text-grey-300" />
+                                    </p>
+                                </Tooltip>
+                            </div>
                             <div
                                 className="flex items-center cursor-pointer"
                                 onClick={() => {
@@ -1038,8 +1118,8 @@ const SubmitAssesment = (props: any) => {
                             (Shipped every month)
                         </p>
                         <hr />
-                        {[product] &&
-                            [product].map((s: any) => (
+                        {product &&
+                            product?.map((s: any) => (
                                 <div className="mt-5 flex justify-between">
                                     <div className="flex">
                                         <p className="font-medium text-start w-[150px] 2xl:text-base xl:text-sm break-words">
@@ -1093,7 +1173,7 @@ const SubmitAssesment = (props: any) => {
                                 Total
                             </p>
                             <p className="font-semibold 2xl:text-base xl:text-sm">
-                                $ {calculateProductPrice().toFixed(2)}
+                                $ {calculateProductPrice()}
                             </p>
                         </div>
                         <Row className="my-5">

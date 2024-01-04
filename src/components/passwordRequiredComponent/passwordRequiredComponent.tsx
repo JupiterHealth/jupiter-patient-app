@@ -1,4 +1,5 @@
-import { CheckOutlineIcon } from "jupiter-commons/src/components/theme/icons/checkOutlineIcon";
+import { CheckCancllationIcon } from "jupiter-commons/src/components/theme/icons/checkCancllationIcon";
+import { CheckVerifiedIcon } from "jupiter-commons/src/components/theme/icons/checkVerifiedIcon";
 import React from "react";
 
 export interface PasswordComponentProps {
@@ -19,25 +20,21 @@ const PasswordRequiredComponent = (props: PasswordComponentProps) => {
             <div className=" absolute left-0 flex">
                 <div>
                     <div className="flex items-center mb-1 !w-40">
-                        <CheckOutlineIcon
-                            className={`${
-                                lengthValidated
-                                    ? "text-success"
-                                    : "text-deactivate"
-                            } `}
-                        />
+                        {lengthValidated ? (
+                            <CheckVerifiedIcon className={`w-4 h-4  `} />
+                        ) : (
+                            <CheckCancllationIcon className={`w-4 h-4  `} />
+                        )}
                         <p className="text-xs font-semibold ml-2 ">
                             8 or more characters
                         </p>
                     </div>
                     <div className="flex items-center">
-                        <CheckOutlineIcon
-                            className={`${
-                                specialValidated
-                                    ? "text-success"
-                                    : "text-deactivate"
-                            } `}
-                        />
+                        {specialValidated ? (
+                            <CheckVerifiedIcon className={`w-4 h-4  `} />
+                        ) : (
+                            <CheckCancllationIcon className={`w-4 h-4  `} />
+                        )}
                         <p className="text-xs font-semibold ml-2">
                             Special characters
                         </p>
@@ -45,25 +42,21 @@ const PasswordRequiredComponent = (props: PasswordComponentProps) => {
                 </div>
                 <div className="ml-5">
                     <div className="flex items-center mb-1 !w-40">
-                        <CheckOutlineIcon
-                            className={`${
-                                caseSensitiveValidated
-                                    ? "text-success"
-                                    : "text-deactivate"
-                            } `}
-                        />
+                        {caseSensitiveValidated ? (
+                            <CheckVerifiedIcon className={`w-4 h-4  `} />
+                        ) : (
+                            <CheckCancllationIcon className={`w-4 h-4  `} />
+                        )}
                         <p className="text-xs font-semibold ml-2 ">
                             Upper & lowercase
                         </p>
                     </div>
                     <div className="flex items-center">
-                        <CheckOutlineIcon
-                            className={`${
-                                numberValidated
-                                    ? "text-success"
-                                    : "text-deactivate"
-                            } `}
-                        />
+                        {numberValidated ? (
+                            <CheckVerifiedIcon className={`w-4 h-4  `} />
+                        ) : (
+                            <CheckCancllationIcon className={`w-4 h-4  `} />
+                        )}
                         <p className="text-xs font-semibold ml-2">Numbers</p>
                     </div>
                 </div>

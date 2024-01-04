@@ -10,8 +10,8 @@ export interface Step1ComponentProps {
     setSelectedOption: (d: any) => any;
     onSubmit: (d: any) => any;
     selectedOption: string;
-    assessMentDetails: any;
     watchFields: any;
+    assessMentDetails: any;
 }
 
 const Step1Component = (props: Step1ComponentProps) => {
@@ -24,8 +24,8 @@ const Step1Component = (props: Step1ComponentProps) => {
         setSelectedOption,
         onSubmit,
         selectedOption,
-        assessMentDetails,
         watchFields,
+        assessMentDetails,
     } = props;
     return (
         <>
@@ -39,8 +39,8 @@ const Step1Component = (props: Step1ComponentProps) => {
                         setSelectedOption,
                         onSubmit,
                         selectedOption,
-                        assessMentDetails,
                         watchFields,
+                        assessMentDetails,
                     }}
                 />
             )}

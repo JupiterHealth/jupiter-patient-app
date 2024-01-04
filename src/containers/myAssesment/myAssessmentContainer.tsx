@@ -241,8 +241,10 @@ const MyAssessmentContainer = () => {
                             overlayClassName="hoverOverTooltip"
                         >
                             <span className="mr-3 flex items-center">
-                                {isLoadingDownload &&
-                                myAssessment?.id === selectedAssessment?.id ? (
+                                {myAssessment?.assessmentStatus ===
+                                "EXITED" ? null : isLoadingDownload &&
+                                  myAssessment?.id ===
+                                      selectedAssessment?.id ? (
                                     <Spinner size={20} />
                                 ) : (
                                     <DownloadIcon

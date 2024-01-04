@@ -3,7 +3,6 @@ import { FrontBodyComponent } from "@components/bodyComponent/frontBodyComponent
 import { questionObj } from "@redux/slices/assessment";
 import { Col, Row } from "antd";
 import {
-    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -76,7 +75,7 @@ const Diagram = (props: DiagramProps) => {
                 <FormGroup
                     className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                 >
-                    <AssessmentTextAreaField
+                    <TextAreaField
                         {...{
                             register,
                             formState,

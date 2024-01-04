@@ -64,6 +64,7 @@ export interface PainManagementSceneProps {
     assessmentId: string;
     setProduct: (d?: any) => any;
     watchFields: any;
+    router: any;
 }
 
 const PainManagementScene = (props: PainManagementSceneProps) => {
@@ -112,6 +113,7 @@ const PainManagementScene = (props: PainManagementSceneProps) => {
         assessmentId,
         setProduct,
         watchFields,
+        router,
     } = props;
 
     const steps = [
@@ -499,8 +501,8 @@ const PainManagementScene = (props: PainManagementSceneProps) => {
                                     setSelectedOption,
                                     onSubmit,
                                     selectedOption,
-                                    assessMentDetails,
                                     watchFields,
+                                    assessMentDetails,
                                 }}
                             />
                             <AssessmentButtonComponent
@@ -534,6 +536,7 @@ const PainManagementScene = (props: PainManagementSceneProps) => {
                                     backParts,
                                     setBackParts,
                                     setFrontParts,
+                                    router,
                                 }}
                             />
                             <AssessmentButtonComponent
@@ -548,7 +551,7 @@ const PainManagementScene = (props: PainManagementSceneProps) => {
                         </div>
                     )}
                     {current === 2 && (
-                        <div className="md:container w-auto mx-auto bg-white md:bg-none overflow-x-hidden rounded-lg p-4 overflow-auto max-h-[calc(100vh_-_270px)] md:max-h-full landscapeQuestion">
+                        <div className="md:container w-auto mx-auto bg-white md:bg-none overflow-x-hidden rounded-lg p-4 overflow-auto max-h-[calc(100vh_-_270px)] md:max-h-full landscapeQuestion md:overflow-hidden">
                             <Step3Component
                                 {...{
                                     activeQuestionId,

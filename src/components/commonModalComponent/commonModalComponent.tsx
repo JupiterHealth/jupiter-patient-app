@@ -5,13 +5,15 @@ import router from "next/router";
 
 export interface CommonModalComponentProps {
     isOpen?: boolean;
-    onClose?: (data?: any) => void;
+    onClose: (data?: any) => void;
     footer?: boolean;
-    title: string;
-    description: string;
+    title: any;
+    description: any;
     setLoadingState: (data?: any) => void;
     loadingState: any;
     assessmentId: string;
+    currentQuestionObj?: any;
+    activeQuestionId?: any;
 }
 
 const CommonModalComponent = (props: CommonModalComponentProps) => {
@@ -24,37 +26,56 @@ const CommonModalComponent = (props: CommonModalComponentProps) => {
         setLoadingState,
         loadingState,
         assessmentId,
+        currentQuestionObj,
+        activeQuestionId,
     } = props;
 
     const handleFlaggedAssessment = async () => {
         try {
-            setLoadingState((d: any) => {
-                return {
-                    ...d,
-                    assessMentFlagLoading: true,
-                };
-            });
+            setLoadingState((d: any) => ({
+                ...d,
+                assessMentFlagLoading: true,
+            }));
+
             const flagAssessMentRes = await flaggedAssessmentAPI(assessmentId);
+
             if (flagAssessMentRes) {
                 router.push("/dashboard");
-                onClose;
+                onClose();
             }
-            setLoadingState((d: any) => {
-                return {
-                    ...d,
-                    assessMentFlagLoading: false,
-                };
-            });
+
+            setLoadingState((d: any) => ({
+                ...d,
+                assessMentFlagLoading: false,
+            }));
         } catch (error) {
             console.log(error);
-            setLoadingState((d: any) => {
-                return {
-                    ...d,
-                    assessMentFlagLoading: false,
-                };
-            });
+
+            setLoadingState((d: any) => ({
+                ...d,
+                assessMentFlagLoading: false,
+            }));
         }
     };
+
+    const handlePurpleFlag = () => {
+        if (currentQuestionObj?.qId === "QUE_13") {
+            router.query.activeQuestionId = "QUE_14";
+        }
+    };
+
+    const handleNextQue = () => {
+        if (currentQuestionObj?.qId === "QUE_9") {
+            router.query.activeQuestionId = "QUE_10";
+            router.push(router);
+        }
+
+        if (currentQuestionObj?.qId === "QUE_14") {
+            router.query.activeQuestionId = "QUE_15";
+            router.push(router);
+        }
+    };
+
     return (
         <>
             <Modal
@@ -67,16 +88,46 @@ const CommonModalComponent = (props: CommonModalComponentProps) => {
                 open={isOpen}
                 onCancel={onClose}
                 footer={
-                    <div className="text-center mt-2 mb-4 flex align-center">
+                    <div
+                        className={`text-center mt-2 mb-4 align-center flex gap-5 ${
+                            (router?.pathname !==
+                                "/dermatology/[assessmentId]" &&
+                                activeQuestionId !== "QUE_9") ||
+                            (activeQuestionId !== "QUE_14"
+                                ? "flex-wrap justify-center"
+                                : "")
+                        }`}
+                    >
+                        {(router?.pathname === "/dermatology/[assessmentId]" &&
+                            currentQuestionObj?.options?.some(
+                                (flag: any) => flag?.flag === "Purple",
+                            ) &&
+                            activeQuestionId === "QUE_9") ||
+                        activeQuestionId === "QUE_14" ? (
+                            <Button
+                                className="btn-outline !bg-transparent hover:border-primary hover:text-primary hover:bg-transparent min-btn-width min-btn-height antLoaderButton"
+                                onClick={
+                                    currentQuestionObj?.options?.some(
+                                        (flag: any) => flag?.flag === "Purple",
+                                    )
+                                        ? handlePurpleFlag
+                                        : handleNextQue
+                                }
+                                disabled={loadingState?.assessMentFlagLoading}
+                            >
+                                Acknowledge & Proceed
+                            </Button>
+                        ) : (
+                            <Button
+                                className="btn-outline !bg-transparent hover:border-primary hover:text-primary hover:bg-transparent min-btn-width min-btn-height antLoaderButton"
+                                onClick={onClose}
+                                disabled={loadingState?.assessMentFlagLoading}
+                            >
+                                Go Back
+                            </Button>
+                        )}
                         <Button
-                            className="btn-outline !bg-transparent hover:border-primary hover:text-primary hover:bg-transparent min-btn-width min-btn-height antLoaderButton"
-                            onClick={onClose}
-                            disabled={loadingState?.assessMentFlagLoading}
-                        >
-                            Go Back
-                        </Button>
-                        <Button
-                            className="btn-primary !ml-5 min-btn-width min-btn-height antLoaderButton"
+                            className="btn-primary min-btn-width min-btn-height antLoaderButton"
                             onClick={() => {
                                 handleFlaggedAssessment();
                             }}

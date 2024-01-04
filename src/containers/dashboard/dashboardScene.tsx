@@ -15,6 +15,8 @@ export interface DashboardProps {
     serviceKey: string;
     handleInProgressAssessment: (d?: any) => any;
     loadingRedirectAssessment?: boolean;
+    setSelectedAssessment: (d: any) => void;
+    selectedAssessment: any;
 }
 
 const DashboardScene = (props: DashboardProps) => {
@@ -29,6 +31,8 @@ const DashboardScene = (props: DashboardProps) => {
         serviceKey,
         handleInProgressAssessment,
         loadingRedirectAssessment,
+        setSelectedAssessment,
+        selectedAssessment,
     } = props;
 
     return (
@@ -121,18 +125,21 @@ const DashboardScene = (props: DashboardProps) => {
                         myAssessmentList?.list.map((assessment: any) => (
                             <div
                                 className="cursor-pointer w-full md:w-[48%] xl:w-[49%]"
-                                onClick={() =>
-                                    handleInProgressAssessment(assessment?.id)
-                                }
+                                onClick={() => {
+                                    setSelectedAssessment(assessment);
+                                    handleInProgressAssessment(assessment);
+                                }}
                             >
                                 <div className="p-3 border border-input rounded-[10px] flex flex-wrap items-start justify-between">
                                     <p className="text-sm md:text-base font-semibold w-[75%] md:w-[72%] md:mb-1 xl:mb-0">
                                         {assessment?.service?.serviceName}{" "}
                                         Assessment
                                     </p>
-                                    {loadingRedirectAssessment && (
-                                        <Spinner className="mb-1" />
-                                    )}
+                                    {loadingRedirectAssessment &&
+                                        selectedAssessment?.id ===
+                                            assessment?.id && (
+                                            <Spinner className="mb-1" />
+                                        )}
                                     <p className="text-secondary text-sm md:text-base font-semibold">
                                         Incomplete
                                     </p>

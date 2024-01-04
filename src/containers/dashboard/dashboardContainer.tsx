@@ -14,6 +14,10 @@ import router from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardScene from "./dashboardScene";
+import {
+    ASSESSMENT_ENUM,
+    ASSESSMENT_ENUM_VALUE,
+} from "jupiter-commons/src/components/libs/constants";
 
 const DashboardContainer = () => {
     const dispatch = useDispatch<any>();
@@ -53,23 +57,34 @@ const DashboardContainer = () => {
         setLoadingRedirectAssessment,
     ] = useState<boolean>(false);
     const [loadingServices, setLoadingServices] = useState<boolean>(false);
+    const [selectedAssessment, setSelectedAssessment] = useState(null);
+
     const createNewAssessmentHandler = async (serviceKey: string) => {
         try {
             setIsLoadingCreateAssessment(true);
             const assessmentRes = await createNewAssessmentAPI(serviceKey);
+
+            const key =
+                ASSESSMENT_ENUM.PAIN_MANAGEMENT === serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.PAIN_MANAGEMENT
+                    : ASSESSMENT_ENUM.DERMATOLOGY === serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.DERMATOLOGY
+                    : ASSESSMENT_ENUM.HAIR_REGROWTH === serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.HAIR_REGROWTH
+                    : "";
 
             if (assessmentRes) {
                 if (assessmentRes?.questions?.length === 0) {
                     router.query.activeQuestionId = "my-profile";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (assessmentRes?.checkout?.shippingAddress) {
                     router.query.activeQuestionId = "delivery-address";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes?.treatmentOption?.treatment
@@ -80,7 +95,7 @@ const DashboardContainer = () => {
                     router.query.activeQuestionId = "treatment-frequency";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes?.treatmentOption?.supplements?.length > 0
@@ -88,13 +103,15 @@ const DashboardContainer = () => {
                     router.query.activeQuestionId = "complementing-suppliments";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
-                } else if (assessmentRes?.treatmentOption?.product) {
+                } else if (
+                    assessmentRes?.treatmentOption?.product?.length > 0
+                ) {
                     router.query.activeQuestionId = "treatment-options";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes &&
@@ -106,7 +123,7 @@ const DashboardContainer = () => {
                         ].qId;
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes &&
@@ -118,13 +135,13 @@ const DashboardContainer = () => {
                         ].qId;
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else {
                     router.query.activeQuestionId = "QUE_1";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 }
             }
@@ -151,16 +168,27 @@ const DashboardContainer = () => {
         }
     };
 
-    const handleInProgressAssessment = async (assessmentId: any) => {
+    const handleInProgressAssessment = async (assessment: any) => {
         try {
             setLoadingRedirectAssessment(true);
-            const assessmentRes = await checkAssessmentAPI(assessmentId);
+            const assessmentRes = await checkAssessmentAPI(assessment?.id);
+            const key =
+                ASSESSMENT_ENUM.PAIN_MANAGEMENT ===
+                assessment?.service?.serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.PAIN_MANAGEMENT
+                    : ASSESSMENT_ENUM.DERMATOLOGY ===
+                      assessment?.service?.serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.DERMATOLOGY
+                    : ASSESSMENT_ENUM.HAIR_REGROWTH ===
+                      assessment?.service?.serviceKey
+                    ? ASSESSMENT_ENUM_VALUE.HAIR_REGROWTH
+                    : "";
             if (assessmentRes) {
                 if (assessmentRes?.questions?.length === 0) {
                     router.query.activeQuestionId = "my-profile";
 
                     router.push(
-                        `pain-management/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes?.treatmentOption?.treatment &&
@@ -177,7 +205,7 @@ const DashboardContainer = () => {
                     router.query.activeQuestionId = "delivery-address";
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes?.treatmentOption?.treatment
@@ -188,7 +216,7 @@ const DashboardContainer = () => {
                     router.query.activeQuestionId = "treatment-frequency";
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes?.treatmentOption?.supplements?.length > 0
@@ -196,13 +224,15 @@ const DashboardContainer = () => {
                     router.query.activeQuestionId = "complementing-suppliments";
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
-                } else if (assessmentRes?.treatmentOption?.product) {
+                } else if (
+                    assessmentRes?.treatmentOption?.product?.length > 0
+                ) {
                     router.query.activeQuestionId = "treatment-options";
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes &&
@@ -214,7 +244,7 @@ const DashboardContainer = () => {
                         ].qId;
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else if (
                     assessmentRes &&
@@ -226,13 +256,13 @@ const DashboardContainer = () => {
                         ].qId;
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 } else {
                     router.query.activeQuestionId = "QUE_1";
 
                     router.push(
-                        `pain-management/${assessmentId}?activeQuestionId=${router.query.activeQuestionId}`,
+                        `${key}/${assessmentRes?.assessment?.id}?activeQuestionId=${router.query.activeQuestionId}`,
                     );
                 }
             }
@@ -272,6 +302,8 @@ const DashboardContainer = () => {
                     serviceKey,
                     handleInProgressAssessment,
                     loadingRedirectAssessment,
+                    setSelectedAssessment,
+                    selectedAssessment,
                 }}
             />
         </>

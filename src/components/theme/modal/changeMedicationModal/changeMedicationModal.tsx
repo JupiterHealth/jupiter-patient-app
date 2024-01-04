@@ -134,7 +134,6 @@ const ChangeMedicationModal = (props: ChangeMedicationModalProps) => {
                 setIsChangeMedicationModalOpen(false);
                 onClose;
             }
-            window.location.reload();
         } catch (error) {
             console.log("Error");
             setIsLoadingChangeMedication(false);

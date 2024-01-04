@@ -12,6 +12,18 @@ export const deleteFileAPI = async ({
     });
 };
 
+export const uploadFileAPI = async ({
+    payload,
+}: {
+    payload: any;
+}): Promise<any> => {
+    return fetch({
+        url: "/upload/uploadFile",
+        method: "POST",
+        data: payload,
+    });
+};
+
 export interface NotificationTriggerPayload {
     type: string;
     subscriberIds: string;

@@ -7,7 +7,6 @@ import { useState } from "react";
 import TermsOfUseModal from "@components/theme/modal/termsOfUseModal/termsOfUseModal";
 import PrivacyPolicyModal from "@components/theme/modal/privacyPolicyModal/privacyPolicyModal";
 import { DEFAULT_SUPPORT_EMAIL } from "jupiter-commons/src/components/libs/constants";
-import router from "next/router";
 
 const BlankLayoutComponent = ({ children }: any) => {
     const [assessmentExit, setAssessmentExit] = useState<any>(false);
@@ -38,7 +37,7 @@ const BlankLayoutComponent = ({ children }: any) => {
                     </div>
                 </a>
             </div>
-            <div className="flex items-center h-full relative">
+            <div className="flex items-center h-full relative overflow-hidden">
                 <div
                     className={`text-center mx-3 md:mx-0 overflow-y-auto lg:!max-h-[calc(100vh-190px)] md:absolute md:left-1/2 md:translate-x-[-50%] md:bg-white w-full md:w-auto rounded-none md:rounded-[30px] authshadow blanklayoutLandscapeContainer ${BlankLayoutStyles.profileComponent}`}
                 >
@@ -64,7 +63,7 @@ const BlankLayoutComponent = ({ children }: any) => {
                         className="text-sm font-medium text-secondary underline cursor-pointer"
                         onClick={() => setIsTermsOfUseModalOpen(true)}
                     >
-                        Terms & Conditions
+                        Terms of Use
                     </p>
                 </div>
                 <h1 className="mt-1.5 text-sm font-semibold">

@@ -3,6 +3,10 @@ import Hospitalized from "@components/medicalHistory/hospitalized";
 import Medication from "@components/medicalHistory/medication";
 import { questionObj } from "@redux/slices/assessment";
 import axios from "axios";
+import {
+    PILLEO_API_URL,
+    PILLEO_AUTHORIZATION_CODE,
+} from "jupiter-commons/src/components/libs/constants";
 import useList from "jupiter-commons/src/components/libs/useList";
 import { useEffect, useState } from "react";
 
@@ -79,7 +83,7 @@ const Step3Component = (props: Step3ComponentProps) => {
     const fetchAllergy = async (search?: string) => {
         const options: any = {
             method: "GET",
-            url: `https://api.pilleo.ca/api/allergy/list`,
+            url: `${PILLEO_API_URL}/allergy/list`,
             params: {
                 ...apiParam,
                 status: "ENABLED",
@@ -88,8 +92,7 @@ const Step3Component = (props: Step3ComponentProps) => {
             },
             headers: {
                 accept: "application/json",
-                authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3cElkIjoiNjUxZjJmYTZhZjAyMmM1ZjkwNmUzYmRjIiwibm0iOiJTa3ljYXJlIFBoYXJtYWN5Iiwic2xnIjoic2t5Y2FyZS1waGFybWFjeSIsImlhdCI6MTY5NzU2NzY2MCwiZXhwIjo0ODUxMTY3NjYwfQ.La7N754DjKTyAJOkIMwLzzIJaRLI_90NBFi0nisdU2U",
+                authorization: PILLEO_AUTHORIZATION_CODE,
             },
         };
         setIsLoading(true);
@@ -114,7 +117,7 @@ const Step3Component = (props: Step3ComponentProps) => {
     const fetchSupplements = async (search?: string) => {
         const options: any = {
             method: "GET",
-            url: `https://api.pilleo.ca/api/medical-condition/list`,
+            url: `${PILLEO_API_URL}/medical-condition/list`,
             params: {
                 ...apiParam,
                 status: "ENABLED",
@@ -123,8 +126,7 @@ const Step3Component = (props: Step3ComponentProps) => {
             },
             headers: {
                 accept: "application/json",
-                authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3cElkIjoiNjUxZjJmYTZhZjAyMmM1ZjkwNmUzYmRjIiwibm0iOiJTa3ljYXJlIFBoYXJtYWN5Iiwic2xnIjoic2t5Y2FyZS1waGFybWFjeSIsImlhdCI6MTY5NzU2NzY2MCwiZXhwIjo0ODUxMTY3NjYwfQ.La7N754DjKTyAJOkIMwLzzIJaRLI_90NBFi0nisdU2U",
+                authorization: PILLEO_AUTHORIZATION_CODE,
             },
         };
         setIsLoading(true);

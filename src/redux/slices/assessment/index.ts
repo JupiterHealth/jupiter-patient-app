@@ -6,6 +6,8 @@ export interface questionObj {
     options: optionType[];
     flagText?: string;
     flagTitle?: string;
+    trigger?: any[];
+    triggerName?: any[];
 }
 
 export interface optionType {
@@ -15,7 +17,7 @@ export interface optionType {
 }
 
 export interface treatmentType {
-    productId?: string;
+    productId?: string[];
     supplementIds?: string[];
     letPrescriberChoose?: boolean;
     deliveryFrequency?: string;

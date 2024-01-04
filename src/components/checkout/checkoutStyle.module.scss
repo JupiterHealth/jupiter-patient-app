@@ -120,6 +120,12 @@
     textarea {
         min-height: 85px;
     }
+
+    :global(.ant-input[disabled]) {
+        &:hover {
+            border-color: #d9d9d9 !important;
+        }
+    }
 }
 
 .uploadBox {

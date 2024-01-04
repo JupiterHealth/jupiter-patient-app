@@ -230,13 +230,13 @@ const LoginScene = (props: LoginSceneProps) => {
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                className={`btn-primary text-lg font-medium px-9 mx-auto flex items-center justify-center !mt-11 antLoaderButton`}
+                                className={`btn-primary text-lg font-medium px-9 mx-auto flex items-center justify-center !mt-9 antLoaderButton`}
                                 loading={isOtpSubmitting}
                                 disabled={!otp || otp.length !== 6}
                             >
                                 Verify
                             </Button>
-                            <div className="mt-5">
+                            <div className="mt-3">
                                 <h3 className="pt-3 text-center text-primary font-bold">
                                     {handleFormatTimer(counter)}
                                 </h3>
@@ -254,6 +254,15 @@ const LoginScene = (props: LoginSceneProps) => {
                                         Resend Code
                                     </Button>
                                 </div>
+                            </div>
+                            <div className="mx-auto md:mt-3 mt-16">
+                                <p className="text-sm font-medium text-light-black">
+                                    <span className="font-bold">
+                                        Disclaimer :
+                                    </span>{" "}
+                                    Didn’t receive the code? Check your spam
+                                    folder or Resend Code.
+                                </p>
                             </div>
                         </div>
                     </div>

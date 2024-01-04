@@ -112,17 +112,23 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
 
     useEffect(() => {
         if (selectedAssessment) {
-            const updatedMedications = [selectedAssessment["drg"]]?.map(
-                (product: any) => {
-                    return {
-                        label: product?.brName,
-                        value: {
-                            productId: product?.id,
-                            productName: product?.brName,
-                        },
-                    };
+            const medicationData: any =
+                selectedAssessment["drg"] === null
+                    ? selectedAssessment["drgMix"]
+                    : selectedAssessment["drg"];
+            const updatedMedications = [
+                {
+                    label: medicationData?.brName
+                        ? medicationData?.brName
+                        : medicationData?.description,
+                    value: {
+                        productId: medicationData?.id,
+                        productName: medicationData?.brName
+                            ? medicationData?.brName
+                            : medicationData?.description,
+                    },
                 },
-            );
+            ];
             setMedicationOptions(updatedMedications);
         }
     }, [selectedAssessment]);
@@ -214,7 +220,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                     <p className="font-bold text-start text-[16px] pt-5">
                         Are there any changes to assessment information, medical
                         condition, new diagnosis or new medications that have
-                        been started?
+                        been started? <span className="text-danger">*</span>
                     </p>
                     <div className="flex mx-[7px] pt-6 md:pt-5">
                         <div className="flex justify-start">
@@ -344,8 +350,8 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                         </div>
                     </div>
                     {watchFields["isSelectRefillFrequency"] && (
-                        <div className="flex mx-[7px]">
-                            <div className="pt-4 flex justify-start flex-wrap">
+                        <div className="flex mx-[7px] flex-wrap">
+                            <div className="pt-4 flex justify-start">
                                 <InputRadioField
                                     {...{
                                         register,
@@ -359,7 +365,7 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                                     }}
                                 />
                             </div>
-                            <div className=" mx-6 pt-4 flex justify-start flex-wrap">
+                            <div className="md:mx-6 mx-0 pt-4 flex justify-start">
                                 <InputRadioField
                                     {...{
                                         register,
@@ -371,6 +377,9 @@ const ModifyMedicationModal = (props: ModifyMedicationModalProps) => {
                                         className: "w-[18px] h-[18px]",
                                     }}
                                 />
+                                <p className="md:text-base text-sm font-semibold text-secondary flex justify-center items-center ml-3">
+                                    Save up to 30% with 3 months
+                                </p>
                             </div>
                         </div>
                     )}

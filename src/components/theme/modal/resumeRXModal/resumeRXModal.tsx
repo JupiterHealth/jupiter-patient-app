@@ -82,17 +82,23 @@ const ResumeRXModal = (props: ResumeRXModalProps) => {
 
     useEffect(() => {
         if (selectedAssessment) {
-            const updatedMedications = [selectedAssessment["drg"]]?.map(
-                (product: any) => {
-                    return {
-                        label: product?.brName,
-                        value: {
-                            productId: product?.id,
-                            productName: product?.brName,
-                        },
-                    };
+            const medicationData: any =
+                selectedAssessment["drg"] === null
+                    ? selectedAssessment["drgMix"]
+                    : selectedAssessment["drg"];
+            const updatedMedications = [
+                {
+                    label: medicationData?.brName
+                        ? medicationData?.brName
+                        : medicationData?.description,
+                    value: {
+                        productId: medicationData?.id,
+                        productName: medicationData?.brName
+                            ? medicationData?.brName
+                            : medicationData?.description,
+                    },
                 },
-            );
+            ];
             setMedicationOptions(updatedMedications);
         }
     }, [selectedAssessment]);
@@ -159,7 +165,7 @@ const ResumeRXModal = (props: ResumeRXModalProps) => {
                     <p className="font-bold text-start text-[16px] pt-5">
                         Are there any changes to assessment information, medical
                         condition, new diagnosis or new medications that have
-                        been started?
+                        been started? <span className="text-danger">*</span>
                     </p>
                     <div className="flex flex-wrap mx-[7px] pt-3 md:pt-5">
                         <div className="flex justify-start">

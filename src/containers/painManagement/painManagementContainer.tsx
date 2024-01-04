@@ -380,7 +380,6 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 });
             }
         }
-
         if (current === 2) {
             const currentQuestionfromApi = assessMentDetails?.medicalHistory.find(
                 (q: any) => q?.qId === activeQuestionId,
@@ -414,13 +413,14 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
         }
 
         if (current === 3) {
-            setSelectedTreatment(assessMentDetails?.treatmentOption?.treatment);
+            //setSelectedTreatment(assessMentDetails?.treatmentOption?.treatment);
             reset({
                 commentForPrescriber:
                     assessMentDetails?.treatmentOption?.treatment
                         ?.commentForPrescriber,
             });
         }
+
         if (current === 4) {
             if (activeQuestionId === "delivery-address") {
                 reset({
@@ -538,7 +538,9 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                         router.query.activeQuestionId =
                             "complementing-suppliments";
                         router.push(router);
-                    } else if (assessMentDetails?.treatmentOption?.product) {
+                    } else if (
+                        assessMentDetails?.treatmentOption?.product?.length > 0
+                    ) {
                         router.query.activeQuestionId = "treatment-options";
                         router.push(router);
                     } else if (
@@ -692,12 +694,13 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 if (activeQuestionId === "treatment-options") {
                     const treatmentResponse = await treatmentAPI(
                         {
-                            productId: selectedTreatment.productId,
+                            productId: selectedTreatment?.productId,
                             commentForPrescriber:
                                 watchFields["commentForPrescriber"],
                         },
                         assessmentId,
                     );
+
                     if (treatmentResponse) {
                         if (product && product?.supplements?.length === 0) {
                             router.query.activeQuestionId =
@@ -710,6 +713,7 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                         }
                     }
                 }
+
                 if (activeQuestionId === "complementing-suppliments") {
                     const treatmentResponse = await treatmentAPI(
                         {
@@ -1076,7 +1080,7 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                         activeQuestionId,
                     )
                 ) {
-                    if (medicines.length === 0) {
+                    if (medicines?.length === 0) {
                         return true;
                     }
                 } else if (
@@ -1095,7 +1099,6 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                 }
             }
         }
-
         if (current === 3) {
             if (activeQuestionId === "treatment-options") {
                 if (!selectedTreatment?.productId) {
@@ -1192,6 +1195,7 @@ const PainManagementContainer = (props: PainManagementContainerProps) => {
                     assessmentId,
                     setProduct,
                     watchFields,
+                    router,
                 }}
             />
             {assessmentFlag?.status && (

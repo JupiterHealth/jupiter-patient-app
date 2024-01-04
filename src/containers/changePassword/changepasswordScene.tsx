@@ -86,25 +86,19 @@ const ChangePasswordScene = (props: ChangePasswordSceneProps) => {
                     </FormGroup>
 
                     {/* Input Validation start here */}
-                    {isValidationSectionShow && (
-                        <PasswordRequiredComponent
-                            {...{
-                                lengthValidated,
-                                specialValidated,
-                                caseSensitiveValidated,
-                                numberValidated,
-                            }}
-                        />
-                    )}
+                    {/* {isValidationSectionShow && ( */}
+                    <PasswordRequiredComponent
+                        {...{
+                            lengthValidated,
+                            specialValidated,
+                            caseSensitiveValidated,
+                            numberValidated,
+                        }}
+                    />
+                    {/* )} */}
                     {/* Input Validation end here */}
 
-                    <FormGroup
-                        className={
-                            isValidationSectionShow
-                                ? "!mb-4 md:w-6/12 mt-20 md:mt-16"
-                                : "m-0 md:w-6/12"
-                        }
-                    >
+                    <FormGroup className={"m-0 md:w-6/12 mt-16"}>
                         <InputPasswordField
                             {...{
                                 register,

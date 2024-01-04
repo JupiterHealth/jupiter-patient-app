@@ -1,6 +1,7 @@
 import React from "react";
 import painManagementStyles from "./painManagementStyles.module.scss";
 import { Button } from "jupiter-commons/src/components/theme/button/button";
+import DermatologyStyles from "./painManagementStyles.module.scss";
 
 export interface AssessmentButtonComponentProps {
     loadingState: any;
@@ -61,7 +62,46 @@ const AssessmentButtonComponent = (props: AssessmentButtonComponentProps) => {
                 ].includes(activeQuestionId) && !loadingState?.checkAssessMent
                     ? painManagementStyles.buttonContainerCustom
                     : painManagementStyles.buttonContainer
-            } ${
+            }
+            ${
+                [
+                    "my-profile",
+                    "begin_assessment",
+                    "QUE_1",
+                    "QUE_2",
+                    "QUE_3",
+                    "QUE_4",
+                    "QUE_5",
+                    "QUE_6",
+                    "QUE_7",
+                    "QUE_8",
+                    "QUE_9",
+                    "QUE_10",
+                    "QUE_11",
+                    "QUE_12",
+                    "QUE_13",
+                    "QUE_14",
+                    "QUE_15",
+                    "QUE_16",
+                    "QUE_17",
+                    "QUE_18",
+                    "ME_QUE_1",
+                    "ME_QUE_2",
+                    "ME_QUE_3",
+                    "ME_QUE_4",
+                    "ME_QUE_5",
+                    "treatment-options",
+                    "complementing-suppliments",
+                    "treatment-frequency",
+                    "delivery-address",
+                    "upload-identification",
+                    "upload-insurance",
+                    "checkout",
+                ].includes(activeQuestionId) && !loadingState?.checkAssessMent
+                    ? DermatologyStyles.buttonContainerCustom
+                    : DermatologyStyles.dermatologyButtonContainer
+            }
+            ${
                 ["QUE_3_A", "QUE_10", "QUE_11", "QUE_19"].includes(
                     activeQuestionId,
                 ) && "!mt-6"

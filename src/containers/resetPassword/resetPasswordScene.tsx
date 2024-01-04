@@ -79,23 +79,21 @@ const ResetPasswordScene = (props: ResetPasswordSceneProps) => {
                             </FormGroup>
                             <div className="!absolute left-0 md:!left-[42px]">
                                 {/* Input Validation start here */}
-                                {isValidationSectionShow && (
-                                    <PasswordRequiredComponent
-                                        {...{
-                                            lengthValidated,
-                                            specialValidated,
-                                            caseSensitiveValidated,
-                                            numberValidated,
-                                        }}
-                                    />
-                                )}
+                                {/* {isValidationSectionShow && ( */}
+                                <PasswordRequiredComponent
+                                    {...{
+                                        lengthValidated,
+                                        specialValidated,
+                                        caseSensitiveValidated,
+                                        numberValidated,
+                                    }}
+                                />
+                                {/* )} */}
                                 {/* Input Validation end here */}
                             </div>
                             <FormGroup
                                 className={
-                                    isValidationSectionShow
-                                        ? "!mb-2 w-full md:w-[85%] mt-20 mx-auto"
-                                        : "!mb-2 w-full md:w-[85%] mt-6 mx-auto"
+                                    "!mb-2 w-full md:w-[85%] mt-16 mx-auto"
                                 }
                             >
                                 <div className="flex mb-1">

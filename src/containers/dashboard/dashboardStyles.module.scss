@@ -1,3 +1,5 @@
+@import "../../../jupiter-commons/src/components/styles/variables.scss";
+
 .box {
     transition: background 0.3s ease;
 
@@ -5,11 +7,13 @@
         border: transparent;
         padding-left: 12px;
         color: white;
-        background: linear-gradient(135.67deg,
-                #d9139c 3.86%,
-                #a244ba 32.65%,
-                #875cc8 51.65%,
-                #3979c3 84.72%);
+        background: linear-gradient(
+            135.67deg,
+            #d9139c 3.86%,
+            #a244ba 32.65%,
+            #875cc8 51.65%,
+            #3979c3 84.72%
+        );
 
         h1 {
             color: white;

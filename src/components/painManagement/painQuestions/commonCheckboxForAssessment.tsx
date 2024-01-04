@@ -2,11 +2,11 @@ import { optionType, questionObj } from "@redux/slices/assessment/index.js";
 import { Checkbox, Col, Row } from "antd";
 import { deepClone } from "jupiter-commons/src/components/libs/helpers";
 import {
-    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
 import PainQuestionsStyle from "../painQuestionsStyle.module.scss";
+import DermatologyStyle from "../../../containers/dermatology/dermatologyStyles.module.scss";
 
 export interface CommonCheckBoxForAssessmentProps {
     currentQuestionObj: questionObj;
@@ -19,9 +19,11 @@ export interface CommonCheckBoxForAssessmentProps {
     unregister: (d?: any) => void;
     noneOftheAbove?: boolean;
     optionForOtherTextbox?: any;
-    colSpan: number;
+    colSpan?: number;
     mobilecolSpan?: number;
     setValue?: any;
+    otherLabel?: any;
+    router: any;
 }
 
 const CommonCheckBoxForAssessment = (
@@ -40,6 +42,8 @@ const CommonCheckBoxForAssessment = (
         colSpan,
         mobilecolSpan,
         setValue,
+        otherLabel,
+        router,
     } = props;
 
     const onClickCheckBoxHandler = (e: any, option: any) => {
@@ -129,6 +133,10 @@ const CommonCheckBoxForAssessment = (
                 } ${currentQuestionObj.qId === "QUE_7" && "questionSeven"} ${
                     currentQuestionObj.qId === "QUE_14" &&
                     "2xl:w-[50%] lg:w-[43%] md:w-[52%] w-auto questionFourteen"
+                } ${
+                    currentQuestionObj.qId === "QUE_2,QUE_3" &&
+                    router?.pathname === "/dermatology/[assessmentId]" &&
+                    "w-[100%] flex justify-center md:w-[40%] ml-[34%]"
                 }`}
             >
                 <Row
@@ -138,6 +146,9 @@ const CommonCheckBoxForAssessment = (
                     } ${
                         currentQuestionObj.qId === "QUE_P_2" &&
                         PainQuestionsStyle.responsiveDesign
+                    } ${
+                        currentQuestionObj.qId === "QUE_17" &&
+                        DermatologyStyle.responsiveDesign
                     }`}
                 >
                     {currentQuestionObj &&
@@ -184,26 +195,33 @@ const CommonCheckBoxForAssessment = (
                     currentQuestionObj?.answers?.some(
                         (a: any) =>
                             a ===
-                            `${
-                                currentQuestionObj?.options?.[
-                                    currentQuestionObj?.options.length -
-                                        optionForOtherTextbox
-                                ].key
-                            }`,
-                    ) && (
+                            currentQuestionObj?.options?.[
+                                currentQuestionObj?.options.length -
+                                    optionForOtherTextbox
+                            ]?.key,
+                    ) &&
+                    currentQuestionObj?.qId !== "QUE_14" && (
                         <div className="mt-10">
                             <div className="flex mb-2">
                                 <p className="text-base font-medium">
-                                    Please enter details below
+                                    {otherLabel ??
+                                        " Please enter details below"}
                                 </p>
-                                {["QUE_1", "QUE_2", "QUE_6"].includes(
-                                    currentQuestionObj?.qId,
-                                ) && <span className="text-danger">*</span>}
+                                {router?.pathname !==
+                                    "/dermatology/[assessmentId]" &&
+                                    ["QUE_1", "QUE_2", "QUE_6"].includes(
+                                        currentQuestionObj?.qId,
+                                    ) && <span className="text-danger">*</span>}
+                                {router?.pathname ===
+                                    "/dermatology/[assessmentId]" &&
+                                    ["QUE_11", "QUE_13"].includes(
+                                        currentQuestionObj?.qId,
+                                    ) && <span className="text-danger">*</span>}
                             </div>
                             <FormGroup
                                 className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                             >
-                                <AssessmentTextAreaField
+                                <TextAreaField
                                     {...{
                                         register,
                                         formState,
@@ -226,7 +244,7 @@ const CommonCheckBoxForAssessment = (
                         </div>
                     )}
 
-                {currentQuestionObj?.qId === "QUE_14" && (
+                {other && currentQuestionObj?.qId === "QUE_14" && (
                     <div className="mt-10">
                         <div className="flex mb-2">
                             <p className="text-base font-medium">
@@ -236,7 +254,7 @@ const CommonCheckBoxForAssessment = (
                         <FormGroup
                             className={`!mb-4 ${PainQuestionsStyle.textareaPainQuestions}`}
                         >
-                            <AssessmentTextAreaField
+                            <TextAreaField
                                 {...{
                                     register,
                                     formState,

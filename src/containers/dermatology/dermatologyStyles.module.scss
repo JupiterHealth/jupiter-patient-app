@@ -1,62 +1,94 @@
 @import "../../../jupiter-commons/src/components/styles/variables.scss";
 
 .customStepper {
-    :global(.ant-steps-item-title) {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 25px !important;
-        color: $light-black;
-    }
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+    z-index: 20;
 
-    :global(.ant-steps-icon) {
-        font-weight: 600;
-        font-size: 20px;
-    }
+    :global(.ant-progress) {
+        :global(.ant-progress-outer) {
+            margin: 0;
+            padding: 0;
 
-    :global(.ant-steps-label-vertical) {
-        :global(.ant-steps-item-tail) {
-            margin-left: 74px;
-            padding: 3.5px 0px;
+            :global(.ant-progress-inner) {
+                background-color: $light-bg;
+                border-radius: unset !important;
 
-            &::after {
-                height: 2px;
-                background: $light-bg;
+                :global(.ant-progress-bg) {
+                    height: 3px !important;
+                    border-bottom-left-radius: unset;
+                    border-top-left-radius: unset;
+                    border-top-right-radius: 100px;
+                }
             }
         }
     }
 
-    :global(.ant-steps-item-wait) {
-        :global(.ant-steps-item-icon) {
-            background: $light-bg;
-            border-color: $light-bg;
-        }
-
-        :global(.ant-steps-icon) {
-            color: $input-border;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        :global(.ant-steps-item-title) {
-            font-size: 14px;
-            font-weight: 500 !important;
-            color: $light-bg !important;
-        }
+    :global(.ant-progress-text) {
+        display: none;
     }
 
-    :global(.ant-steps-item-finish) {
-        :global(.ant-steps-item-icon) {
-            background-color: $primary;
-        }
+    @media only screen and (max-width: 676px) {
+        background: #f9f9f9;
+    }
+}
 
-        :global(.ant-steps-icon) {
-            color: $white;
-            top: -4.5px;
-        }
+.closeOutlined {
+    span {
+        svg {
+            width: 16px;
+            height: 16px;
 
-        :global(.ant-steps-item-tail) {
-            &::after {
-                background: $primary;
+            @media only screen and (max-width: 820px) {
+                width: 11px;
+                height: 11px;
+            }
+        }
+    }
+}
+
+.dermatologyContentCustom {
+    height: auto !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.responsiveDesign {
+    display: block;
+    @media (min-width: 1024px) {
+        display: block;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .customRadioFieldText {
+        :global(.custom-ant-radio) {
+            label {
+                font-size: 14px !important;
+                flex: 0 0 100%;
+                span {
+                    width: 100%;
+                    display: block;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .radioFieldText {
+        :global(.custom-ant-radio) {
+            label {
+                flex: 0 0 100%;
+                span {
+                    width: 100%;
+                    display: block;
+                    text-align: left;
+                }
             }
         }
     }

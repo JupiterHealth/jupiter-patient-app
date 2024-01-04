@@ -2,20 +2,15 @@ import React, { createContext, useEffect, useState } from "react";
 import { AxiosInstance } from "axios";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    LoginUserState,
-    loginReset,
-    loginUserReset,
-    logoutUser,
-} from "@redux/slices/auth";
+import { LoginUserState, logoutUser } from "@redux/slices/auth";
 import { RootState } from "@redux/reducers";
-import router from "next/router";
 import { message } from "antd";
 import {
     PATIENT_COOKIE,
     TOAST_MESSAGE_DELAY,
 } from "jupiter-commons/src/components/libs/constants";
 import { API } from "jupiter-commons/src/components/libs/helpers";
+import { useLocalStorage } from "jupiter-commons/src/components/libs/uselocalStorageHook";
 
 export interface LayoutContextModel {
     isModalVisible: boolean;
@@ -25,6 +20,8 @@ export interface LayoutContextModel {
     doLogout?: () => void;
     collapsed: boolean;
     isLoggingOut: boolean;
+    dermatologyData?: any;
+    setDermatologyData: (d?: any) => void;
 }
 
 const initialState: LayoutContextModel = {
@@ -38,6 +35,9 @@ const initialState: LayoutContextModel = {
     setCollapsed: () => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     handleCancel: () => {},
+    dermatologyData: [],
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    setDermatologyData: () => {},
 };
 
 export const LayoutContext = createContext(initialState);
@@ -54,6 +54,10 @@ export const LayoutContextProvider = ({ children }: any) => {
     const { data: loginUser }: LoginUserState = useSelector(
         (state: RootState) => state.loginUser,
     );
+    const [dermatologyData, setDermatologyData] = useLocalStorage([
+        "dermatologyData",
+        null,
+    ]);
 
     const doLogout = async (noApiCall = false) => {
         try {
@@ -66,6 +70,7 @@ export const LayoutContextProvider = ({ children }: any) => {
                     }),
                 );
             }
+            setDermatologyData(null);
         } catch (e) {
             setIsLoggingOut(false);
             console.log(e);
@@ -152,6 +157,8 @@ export const LayoutContextProvider = ({ children }: any) => {
                 doLogout,
                 collapsed,
                 setCollapsed,
+                dermatologyData,
+                setDermatologyData,
             }}
         >
             {children}

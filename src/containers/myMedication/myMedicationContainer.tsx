@@ -32,6 +32,9 @@ import { RootState } from "@redux/reducers";
 import medicationStyle from "./medicationStyle.module.scss";
 import { InformationIcon } from "jupiter-commons/src/components/theme/icons/informationIcon";
 import { SidebarPrescriberChatIcon } from "jupiter-commons/src/components/theme/icons/sidebarPrescriberChatIcon";
+import Link from "next/link";
+import { PILLEO_API_URL } from "jupiter-commons/src/components/libs/constants";
+import { PILLEO_AUTHORIZATION_CODE } from "jupiter-commons/src/components/libs/constants";
 
 export const MyMedicationContainer = () => {
     const [selectedAssessment, setSelectedAssessment] = useState<any>();
@@ -55,6 +58,39 @@ export const MyMedicationContainer = () => {
             take: DEFAULT_TABLE_LIMIT,
         },
     });
+
+    const getUrlByName = (pname: any) => {
+        const name = (pname?.drg?.brName ?? pname?.drgMix?.description)
+            .split("-")[0]
+            .trim();
+
+        const urlMap: any = {
+            "INF 1":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568a5b62fa9d33ce36b1aa1_INF%201%20-%20Counselling%20Information.pdf",
+            "INF 2":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb27f907e7cf056330a1_INF%202%20-%20Counselling%20Information.pdf",
+            "INF 3":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb27c32ecda9505e6350_INF%203%20-%20Counselling%20Information.pdf",
+            "MSK 1":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb2721d1219bafffd7a8_MSK%201%20-%20Counselling%20Information.pdf",
+            "MSK 2":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb27ae8a83bbc69a331c_MSK%202%20-%20Counselling%20Information.pdf",
+            "NUP 1":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb279f53b1837a851674_NUP%201%20-%20Counselling%20Information.pdf",
+            "NUP 2":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb28bc91e911495064f4_NUP%202%20-%20Counselling%20Information.pdf",
+            "NUP 3":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb2960df036e55757210_NUP%203%20-%20Counselling%20Information.pdf",
+            "MXP 1":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb279cf360ead3fc3aa9_MXP%201%20-%20Counselling%20Information.pdf",
+            "MXP 2":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb27bc73a44d08723e3c_MXP%202%20-%20Counselling%20Information.pdf",
+            "MXP 3":
+                "https://uploads-ssl.webflow.com/644be1b1b30293915f6122ca/6568eb27575b6f01209b4f4c_MXP%203%20-%20Counselling%20Information.pdf",
+        };
+
+        return urlMap[name] || "/404"; // Redirect to a 404 page if the name is not found
+    };
 
     const loginUser: LoginState = useSelector(
         (state: RootState) => state.loginUser,
@@ -83,7 +119,7 @@ export const MyMedicationContainer = () => {
                     <span className="font-medium">
                         {Number(patientMedication?.dispQty)?.toFixed(0) ??
                             "N/A"}
-                        {patientMedication?.drgMix?.drgForm?.form ??
+                        {patientMedication?.drgMix?.drgform?.form ??
                             patientMedication?.drg?.drgform?.form}
                     </span>
                 </div>
@@ -218,7 +254,14 @@ export const MyMedicationContainer = () => {
                                     <div className="flex text-start">
                                         <CounsellingInformationIcon className="text-light-black w-4" />
                                         <p className="ml-3 text-[15px] font-medium text-light-black">
-                                            Counseling Information
+                                            <Link
+                                                href={getUrlByName(
+                                                    myAssessment,
+                                                )}
+                                                target="_blank"
+                                            >
+                                                Counseling Information
+                                            </Link>
                                         </p>
                                     </div>
                                     <div
@@ -330,12 +373,11 @@ export const MyMedicationContainer = () => {
     const fetchMedication = async () => {
         const options: any = {
             method: "GET",
-            url: `https://api.pilleo.ca/api/patient-medication/list/${loginUser?.data?.user?.krollId}/`,
+            url: `${PILLEO_API_URL}/patient-medication/active-list/${loginUser?.data?.user?.krollId}/`,
             params: apiParam,
             headers: {
                 accept: "application/json",
-                authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3cElkIjoiNjUxZjJmYTZhZjAyMmM1ZjkwNmUzYmRjIiwibm0iOiJTa3ljYXJlIFBoYXJtYWN5Iiwic2xnIjoic2t5Y2FyZS1waGFybWFjeSIsImlhdCI6MTY5NzU2NzY2MCwiZXhwIjo0ODUxMTY3NjYwfQ.La7N754DjKTyAJOkIMwLzzIJaRLI_90NBFi0nisdU2U",
+                authorization: PILLEO_AUTHORIZATION_CODE,
             },
         };
         setIsLoadingMedication(true);

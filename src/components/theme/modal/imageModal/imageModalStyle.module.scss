@@ -1,0 +1,12 @@
+.imagePosition {
+    :global(.react-multi-carousel-list) {
+        :global(.react-multiple-carousel__arrow) {
+            min-width: 30px;
+            min-height: 30px;
+
+            &::before {
+                font-size: 16px;
+            }
+        }
+    }
+}

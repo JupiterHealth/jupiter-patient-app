@@ -1,63 +1,189 @@
 @import "../../../jupiter-commons/src/components/styles/variables.scss";
 
 .customStepper {
-    :global(.ant-steps-item-title) {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 25px !important;
-        color: $light-black;
-    }
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+    z-index: 20;
 
-    :global(.ant-steps-icon) {
-        font-weight: 600;
-        font-size: 20px;
-    }
+    :global(.ant-progress) {
+        :global(.ant-progress-outer) {
+            margin: 0;
+            padding: 0;
 
-    :global(.ant-steps-label-vertical) {
-        :global(.ant-steps-item-tail) {
-            margin-left: 74px;
-            padding: 3.5px 0px;
+            :global(.ant-progress-inner) {
+                background-color: $light-bg;
+                border-radius: unset !important;
 
-            &::after {
-                height: 2px;
-                background: $light-bg;
+                :global(.ant-progress-bg) {
+                    height: 3px !important;
+                    border-bottom-left-radius: unset;
+                    border-top-left-radius: unset;
+                    border-top-right-radius: 100px;
+                }
             }
         }
     }
 
-    :global(.ant-steps-item-wait) {
-        :global(.ant-steps-item-icon) {
-            background: $light-bg;
-            border-color: $light-bg;
-        }
-
-        :global(.ant-steps-icon) {
-            color: $input-border;
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        :global(.ant-steps-item-title) {
-            font-size: 14px;
-            font-weight: 500 !important;
-            color: $light-bg !important;
-        }
+    :global(.ant-progress-text) {
+        display: none;
     }
 
-    :global(.ant-steps-item-finish) {
-        :global(.ant-steps-item-icon) {
-            background-color: $primary;
-        }
+    @media only screen and (max-width: 676px) {
+        background: #f9f9f9;
+    }
+}
 
-        :global(.ant-steps-icon) {
-            color: $white;
-            top: -4.5px;
-        }
+.buttonContainer {
+    position: fixed;
+    bottom: 0px !important;
+    left: 0px;
+    background: #fff;
+    padding: 20px 0px 22px 0px;
+    width: 100%;
+    z-index: 20;
+}
 
-        :global(.ant-steps-item-tail) {
-            &::after {
-                background: $primary;
+.dermatologyButtonContainer {
+    // position: fixed;
+    bottom: 0px !important;
+    left: 0px;
+    background: #fff;
+    padding: 20px 0px 22px 0px;
+    width: 100%;
+    z-index: 20;
+}
+
+.buttonContainerCustom {
+    position: static;
+    bottom: 0px !important;
+    left: 0px;
+    background: #fff;
+    padding: 20px 0px 22px 0px;
+    width: 100%;
+    z-index: 20;
+
+    @media only screen and (max-width: 676px) {
+        background: none;
+    }
+}
+
+.painManagementContent {
+    height: calc(100vh - 455px);
+    overflow-y: auto;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+        height: 4px !important;
+        width: 4px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(207, 207, 207);
+        border-radius: 15px;
+    }
+
+    @media only screen and (min-width: 2000px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.painManagementContentCustom {
+    height: auto !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.defaultSkeleton {
+    height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    div:first-child {
+        position: absolute !important;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &::-webkit-scrollbar {
+        height: 4px !important;
+        width: 4px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(207, 207, 207);
+        border-radius: 15px;
+    }
+
+    div {
+        z-index: 10 !important;
+    }
+
+    @media only screen and (max-width: 676px) {
+        height: calc(100vh - 260px);
+    }
+}
+
+.closeOutlined {
+    span {
+        svg {
+            width: 16px;
+            height: 16px;
+
+            @media only screen and (max-width: 820px) {
+                width: 11px;
+                height: 11px;
             }
         }
+    }
+}
+
+.painManagementContent {
+    height: calc(100vh - 455px);
+    overflow-y: auto;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+        height: 4px !important;
+        width: 4px !important;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(207, 207, 207);
+        border-radius: 15px;
+    }
+
+    @media only screen and (min-width: 2000px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -3,7 +3,8 @@ import { Modal } from "antd";
 import { Button } from "jupiter-commons/src/components/theme/button/button";
 import TermsOfUseStyles from "./termsOfUseModal.module.scss";
 import {
-    DEFAULT_SUPPORT_EMAIL,
+    DEFAULT_COMPLAINTS,
+    DEFAULT_PRIVACY_EMAIL,
     DEFAULT_WEBSITE,
 } from "jupiter-commons/src/components/libs/constants";
 
@@ -99,7 +100,7 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         Last Revised Date
                     </h2>
                     <p className="text-[15px] font-medium">
-                        These Terms of Use were last updated on November 28,
+                        These Terms of Use were last updated on December 20,
                         2023. We reserve the right to update or modify these
                         Terms at any time, and you agree to be bound by such
                         modifications or updates. It is your responsibility to
@@ -504,7 +505,7 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                     <p className="text-sm font-medium pt-2">
                         By continuing to use our Platform, you acknowledge your
                         understanding and acceptance of these terms pertaining
-                        to Compounding Services and Medication Recalls
+                        to Compounding Services and Medication Recalls.
                     </p>
                     <p className="flex flex-wrap text-sm font-medium pt-4">
                         <span className="text-sm font-extrabold">
@@ -585,17 +586,25 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         <br /> Clinical consultation to assess any health
                         impacts due to the error.
                     </p>
+                    <p className="text-sm font-medium pt-2">
+                        Jupiter Health Inc. and its affiliate pharmacies shall
+                        not be held liable for any adverse events, damages, or
+                        complications arising from the dispensing error unless
+                        it is established that the error occurred due to
+                        negligence or willful misconduct.
+                    </p>
                 </div>
                 <div>
                     <h2 className="text-base font-bold pt-4 text-secondary">
                         <span className="text-base font-bold pr-2">8.</span>
                         Documentation and Records
                     </h2>
-                    <p className="flex flex-wrap text-sm font-medium">
+                    <p className="text-sm font-medium">
                         <span className="text-sm font-extrabold">
                             Requests for Medical Expense Reports and Other
                             Documentation
                         </span>
+                        <br />
                         If you are a patient of a Jupiter affiliated pharmacy,
                         upon request, Jupiter Health Inc. will provide you with
                         a detailed medical expense report and other relevant
@@ -604,16 +613,17 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         tax purposes, or insurance claims and will be made
                         available through your secure user portal. To request
                         such reports, please submit a written request to our
-                        Customer Service Department at{""}
+                        Customer Service Department at
                         <a
-                            href={`mailto:${DEFAULT_SUPPORT_EMAIL}`}
+                            href={`mailto:${DEFAULT_PRIVACY_EMAIL}`}
                             target="_blank"
+                            className="text-secondary font-medium ml-1"
                         >
-                            <span className="text-primary font-medium">
-                                {DEFAULT_SUPPORT_EMAIL}{" "}
-                            </span>
-                        </a>
+                            {DEFAULT_PRIVACY_EMAIL}
+                        </a>{" "}
+                        .
                     </p>
+
                     <p className="text-sm font-medium pt-2">
                         Please allow up to seven (7) business days for the
                         processing of your request. While we strive for accuracy
@@ -795,12 +805,11 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         <span className="text-sm font-extrabold">
                             Eligibility for Refund
                         </span>
-                        You may modify, pause or cancel your subscription at any
-                        time through your Account settings. Cancellation will
-                        take effect at the end of the current billing cycle, and
-                        you will not be charged thereafter. No refunds will be
-                        issued for the unused portion of any subscription
-                        period.
+                        Except where explicitly stated in these terms, all
+                        charges for Services rendered by Jupiter Health are
+                        non-refundable. A refund of the value of assessment fee
+                        may only be issued in the event that a treatment plan is
+                        not generated following your consultation.
                     </p>
                 </div>
                 <div>
@@ -951,19 +960,26 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         initial acceptance of these terms by delivering a
                         written notice to Jupiter Health Inc.
                     </p>
-                    <p className="flex flex-wrap text-sm font-medium pt-4">
+                    <p className="text-sm font-medium pt-4">
                         <span className="text-sm font-extrabold">
                             Complaints and Grievance Redressal
                         </span>
+                        <br />
                         Any complaints, concerns, or grievances you may have
                         about the Services provided through Jupiter Health Inc.
                         must be submitted in writing to our designated Grievance
-                        Officer at [Insert Grievance Officer's Contact
-                        Information]. We are committed to addressing your
-                        concerns in a timely and effective manner. You may
-                        expect an initial acknowledgment of your complaint
-                        within 48 hours, and a comprehensive resolution plan
-                        within 15 business days.
+                        Officer at{" "}
+                        <a
+                            href={`mailto:${DEFAULT_COMPLAINTS}`}
+                            target="_blank"
+                            className="text-secondary font-medium ml-1"
+                        >
+                            {DEFAULT_COMPLAINTS}
+                        </a>
+                        . We are committed to addressing your concerns in a
+                        timely and effective manner. You may expect an initial
+                        acknowledgment of your complaint within 48 hours, and a
+                        comprehensive resolution plan within 15 business days.
                     </p>
                     <p className="flex flex-wrap text-sm font-medium pt-4">
                         <span className="text-sm font-extrabold">
@@ -1202,14 +1218,9 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                         no force or effect.
                     </p>
                     <p className="text-sm font-medium pt-4">
-                        These Terms of Use, along with any associated content,
-                        materials, or features of the Platform, do not create
-                        any partnership, joint venture, employment, or other
-                        agency relationship between Jupiter Health Inc. and you.
-                        You are not authorized to enter into any contract, incur
-                        obligations, or bind Jupiter Health Inc. in any manner
-                        whatsoever. Any attempt to do so is void and shall have
-                        no force or effect.
+                        This should provide Jupiter Health Inc. with robust
+                        legal protections regarding the non-waiver of terms and
+                        the avoidance of unintended agency relationships.
                     </p>
                     <p className="flex flex-wrap text-sm font-medium pt-4">
                         <span className="text-base font-semibold">
@@ -1414,7 +1425,7 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                             <span className="text-sm font-extrabold pr-2">
                                 “Assessment”
                             </span>
-                            ” refers to the systematic evaluation conducted by a
+                            refers to the systematic evaluation conducted by a
                             licensed healthcare professional through Jupiter
                             Health's platform, limited to a single medical
                             condition.
@@ -1434,11 +1445,11 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                             <span className="text-sm font-extrabold pl-2">
                                 “Questionnaire”
                             </span>
-                            ” refers to the set of questions developed by us or
-                            by our professionals, working as partners,
-                            contractors and employees to collect pertinent
-                            information to assist with medical evaluations and
-                            to provide recommended treatment options.
+                            refers to the set of questions developed by us or by
+                            our professionals, working as partners, contractors
+                            and employees to collect pertinent information to
+                            assist with medical evaluations and to provide
+                            recommended treatment options.
                         </li>
                         <li>
                             <span className="text-sm font-extrabold pr-2">
@@ -1536,15 +1547,15 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                             <span className="text-sm font-extrabold pl-2">
                                 “Healthcare Provider”
                             </span>
-                            ” refers to licensed medical professionals
-                            contracted by Jupiter Health, responsible for
-                            providing healthcare services to Patients.
+                            refers to licensed medical professionals contracted
+                            by Jupiter Health, responsible for providing
+                            healthcare services to Patients.
                         </li>
                         <li>
                             <span className="text-sm font-extrabold pr-2">
                                 “Inactive Account”
                             </span>
-                            ” refers to an Account that has not been used for a
+                            refers to an Account that has not been used for a
                             specified period and may be subject to deactivation.
                         </li>
                         <li>
@@ -1619,7 +1630,7 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                             <span className="text-sm font-extrabold pr-2">
                                 “Quality of Service”
                             </span>
-                            ” means the standard of healthcare provision that
+                            means the standard of healthcare provision that
                             Healthcare Professionals are expected to adhere to.
                         </li>
                         <li>
@@ -1665,7 +1676,7 @@ const TermsOfUseModal = (props: TermsOfUseModalProps) => {
                             <span className="text-sm font-bold pl-2">
                                 “Virtual Care”
                             </span>
-                            ” is the practice of caring for Patients remotely
+                            is the practice of caring for Patients remotely
                             through telecommunication technologies.
                         </li>
                         <li>

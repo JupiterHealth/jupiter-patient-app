@@ -127,10 +127,9 @@ const Medication = (props: MedicationProps) => {
                                                         ),
                                                     placeholder:
                                                         "Search or add medications",
-                                                    isClearable: false,
+                                                    isClearable: true,
                                                     name: "medication",
                                                 }}
-                                                isClearable={true}
                                             />
                                         </FormGroup>
                                     ) : (
@@ -146,6 +145,8 @@ const Medication = (props: MedicationProps) => {
                                                     options: selectOptions,
                                                     className:
                                                         "ant-react-select",
+                                                    classNamePrefix:
+                                                        "creatable-select",
                                                     onInputChange: (
                                                         inputValue: any,
                                                     ) => {

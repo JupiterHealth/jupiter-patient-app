@@ -1,9 +1,8 @@
 import { fetchTreatmentAPI } from "@redux/services/assessment.api";
-import { Button, Spin, Tooltip } from "antd";
+import { Button, Spin } from "antd";
 import { convertToTitleCaseAndRemoveUnderscore } from "jupiter-commons/src/components/libs/helpers";
 import { CheckCircleIcon } from "jupiter-commons/src/components/theme/icons/checkCircleIcon";
 import { DeleteIcon } from "jupiter-commons/src/components/theme/icons/deleteIcon";
-import { PlusCircleOutlinedIcon } from "jupiter-commons/src/components/theme/icons/plusCircleOutlinedIcon";
 import { useEffect, useState } from "react";
 
 export interface ComplimentingSupplementsProps {
@@ -39,37 +38,37 @@ const ComplimentingSupplements = (props: ComplimentingSupplementsProps) => {
             v3 = 0;
         const queG1: any = questions.find((q: any) => q.qId === "QUE_G_1");
 
-        if (queG1.answers.includes("QUE_G_1_ANS_1")) {
+        if (queG1?.answers.includes("QUE_G_1_ANS_1")) {
             v1 = 0.5;
         }
 
-        if (queG1.answers.includes("QUE_G_1_ANS_2")) {
+        if (queG1?.answers.includes("QUE_G_1_ANS_2")) {
             v1 = 1;
         }
 
-        if (queG1.answers.includes("QUE_G_1_ANS_3")) {
+        if (queG1?.answers.includes("QUE_G_1_ANS_3")) {
             v1 = 2;
         }
 
-        if (queG1.answers.includes("QUE_G_1_ANS_4")) {
+        if (queG1?.answers.includes("QUE_G_1_ANS_4")) {
             v1 = 0;
         }
 
         const queG3: any = questions.find((q: any) => q.qId === "QUE_G_3");
 
-        if (queG3.answers.includes("QUE_G_3_ANS_1")) {
+        if (queG3?.answers.includes("QUE_G_3_ANS_1")) {
             v3 = v3 + 1;
         }
 
-        if (queG3.answers.includes("QUE_G_3_ANS_2")) {
+        if (queG3?.answers.includes("QUE_G_3_ANS_2")) {
             v3 = v3 + 1;
         }
 
-        if (queG3.answers.includes("QUE_G_3_ANS_3")) {
+        if (queG3?.answers.includes("QUE_G_3_ANS_3")) {
             v3 = v3 + 1;
         }
 
-        if (queG3.answers.includes("QUE_G_3_ANS_4")) {
+        if (queG3?.answers.includes("QUE_G_3_ANS_4")) {
             v3 = 3;
         }
 
@@ -110,6 +109,12 @@ const ComplimentingSupplements = (props: ComplimentingSupplementsProps) => {
         } else if (uniqueCategories.length > 1) {
             if (
                 uniqueCategories.includes("Musculoskeletal") &&
+                uniqueCategories.includes("Inflammatory") &&
+                uniqueCategories.includes("Neuropathic")
+            ) {
+                setCondition("MIXED_PAIN");
+            } else if (
+                uniqueCategories.includes("Musculoskeletal") &&
                 uniqueCategories.includes("Inflammatory")
             ) {
                 setCondition("MUSCULOSKELETAL_PAIN");
@@ -130,6 +135,7 @@ const ComplimentingSupplements = (props: ComplimentingSupplementsProps) => {
                     treatment.id,
                 ],
             };
+
             const testSupplementIds = treatmentOptions.map(
                 (item: any) => item.id,
             );

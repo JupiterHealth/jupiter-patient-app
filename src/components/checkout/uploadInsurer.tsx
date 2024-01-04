@@ -1,5 +1,4 @@
 import {
-    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -96,13 +95,13 @@ const UploadInsurer = (props: UploadInsurerProps) => {
             if (file && file?.response) {
                 setIsImageDeleting(true);
                 await deleteFileAPI({
-                    payload: { fileName: file?.response?.key },
+                    payload: { fileName: file?.response?.Key },
                 });
                 setIsImageDeleting(false);
                 setImageData((d: any) =>
                     d.filter(
                         (item: any) =>
-                            item?.response?.key !== file?.response?.key,
+                            item?.response?.Key !== file?.response?.Key,
                     ),
                 );
                 message.success(
@@ -118,15 +117,15 @@ const UploadInsurer = (props: UploadInsurerProps) => {
     return (
         <div>
             <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-secondary">
-                Upload Insurance
+                Upload Private Insurance
             </h1>
             <p className="text-sm xl:text-base font-bold mt-2">
-                Please upload photos of your insurance card
+                Our pharmacy team will process claims on your behalf
             </p>
             <div className="flex text-base font-medium mb-2 pt-5 md:pt-9">
                 <p>
-                    Upload a photo of the front and back of your insurance
-                    card(s) <span className="text-danger">*</span>
+                    Upload a photo of the front and back of your private
+                    insurance card(s) <span className="text-danger">*</span>
                 </p>
             </div>
             <div className={`${CheckoutStyle.uploadBox}`}>
@@ -180,7 +179,7 @@ const UploadInsurer = (props: UploadInsurerProps) => {
                 </div>
             )}
             <FormGroup className={`!mb-4 mt-7 ${CheckoutStyle.asteriskRemove}`}>
-                <AssessmentTextAreaField
+                <TextAreaField
                     {...{
                         register,
                         formState,

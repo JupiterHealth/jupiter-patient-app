@@ -1,11 +1,5 @@
 @import "../jupiter-commons/src/components/styles/variables.scss";
 
-.reactSelect {
-    :global(.css-1fdsijx-ValueContainer) {
-        text-align: left !important;
-        width: 250px !important;
-    }
-}
 .textarea {
     div {
         :global(.textarea) {
@@ -41,76 +35,40 @@
 }
 
 .reactSelect {
-    .ant-react-select {
-        text-align: left;
-
-        .react-select__control--is-focused {
-            .css-1fdsijx-ValueContainer {
-                padding-left: 17px !important;
+    width: 100%;
+    :global(.creatable-select__input-container) {
+        width: 265px !important;
+        @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (orientation: landscape) {
+            width: 570px !important;
+        }
+        :global(.creatable-select__input) {
+            width: 265px !important;
+            @media only screen and (min-device-width: 320px) and (max-device-width: 992px) and (orientation: landscape) {
+                width: 570px !important;
             }
         }
+    }
 
-        .css-t3ipsp-control {
-            padding-left: 0px;
-            border-radius: 10px;
-            border: 1px solid #c8cccf !important;
-            border-color: #c8cccf !important;
-            box-shadow: unset !important;
-
-            &:hover {
-                border-color: $primary !important;
-                box-shadow: 0 0 0 2px rgba(173, 59, 180, 0.2) !important;
-            }
-
-            .css-1hb7zxy-IndicatorsContainer {
-                height: 35px;
-
-                .css-1u9des2-indicatorSeparator {
-                    display: none;
-                }
-            }
+    :global(.css-1n6sfyn-MenuList) {
+        &::-webkit-scrollbar {
+            height: 6px !important;
+            width: 6px !important;
         }
 
-        .css-13cymwt-control {
-            border: 1px solid #c8cccf;
-            border-radius: 10px !important;
-            color: $light-black;
-
-            .css-1fdsijx-ValueContainer {
-                padding-left: 17px !important;
-
-                .css-1jqq78o-placeholder {
-                    &::placeholder {
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: $grey-300;
-                    }
-                }
-            }
-
-            .css-1hb7zxy-IndicatorsContainer {
-                height: 35px;
-
-                .css-1u9des2-indicatorSeparator {
-                    display: none;
-                }
-            }
-
-            &:hover {
-                border-color: $primary !important;
-            }
-
-            &:focus-visible,
-            :focus-within,
-            :focus {
-                border-color: $primary !important;
-                box-shadow: 0 0 0 2px rgba(173, 59, 180, 0.2) !important;
-            }
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #fff;
         }
 
-        &:focus,
-        :focus-visible {
-            outline: none;
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: rgb(207, 207, 207);
+            border-radius: 15px;
         }
+    }
+
+    &:focus,
+    :focus-visible {
+        outline: none;
     }
 }

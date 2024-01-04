@@ -1,8 +1,7 @@
 import { fetchTreatmentAPI } from "@redux/services/assessment.api";
 import { treatmentType } from "@redux/slices/assessment";
-import { Col, Row, Spin } from "antd";
+import { Spin } from "antd";
 import {
-    AssessmentTextAreaField,
     FormGroup,
     TextAreaField,
 } from "jupiter-commons/src/components/theme/form/formFieldsComponent";
@@ -121,6 +120,12 @@ const TreatmentOption = (props: TreatmentOptionProps) => {
         } else if (uniqueCategories.length > 1) {
             if (
                 uniqueCategories.includes("Musculoskeletal") &&
+                uniqueCategories.includes("Inflammatory") &&
+                uniqueCategories.includes("Neuropathic")
+            ) {
+                setCondition("MIXED_PAIN");
+            } else if (
+                uniqueCategories.includes("Musculoskeletal") &&
                 uniqueCategories.includes("Inflammatory")
             ) {
                 setCondition("MUSCULOSKELETAL_PAIN");
@@ -165,13 +170,17 @@ const TreatmentOption = (props: TreatmentOptionProps) => {
                 },
                 assessmentId,
             );
+            const treatmentResponseProductId = treatMentOptionsRes?.product?.map(
+                (prodId: any) => prodId?.id,
+            );
+
             if (treatMentOptionsRes) {
-                setTreatmentOptions([treatMentOptionsRes?.product]);
+                setTreatmentOptions(treatMentOptionsRes?.product);
                 setProduct(treatMentOptionsRes);
                 setSelectedTreatment((d: any) => {
                     return {
                         ...d,
-                        productId: treatMentOptionsRes?.product?.id,
+                        productId: treatmentResponseProductId,
                     };
                 });
             }
@@ -338,7 +347,7 @@ const TreatmentOption = (props: TreatmentOptionProps) => {
                     </p>
                 </div>
                 <FormGroup className="!mb-4">
-                    <AssessmentTextAreaField
+                    <TextAreaField
                         {...{
                             register,
                             formState,
